@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Barnisan LLC — Independent Software Studio</title>
-<meta name="description" content="Barnisan LLC is an independent software studio based in the United States, building thoughtful apps for Apple platforms and tools for live, interactive communities.">
+<title>Barnisan LLC — Independent Game Studio</title>
+<meta name="description" content="Barnisan LLC is an independent game studio based in the United States, building games for Apple platforms. Four titles in development: Governor, Rusalki, Unfurrled and YapOff.">
 <link rel="canonical" href="https://barnisan.com/">
 <meta property="og:title" content="Barnisan LLC">
-<meta property="og:description" content="An independent software studio building thoughtful apps and tools for live, interactive communities.">
+<meta property="og:description" content="An independent game studio building games for Apple platforms.">
 <meta property="og:url" content="https://barnisan.com/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#7c3aed">
@@ -92,7 +92,7 @@
   section p { color: var(--body); max-width: 42em; }
   section p + p { margin-top: 14px; }
 
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 30px; }
   .card {
     position: relative; background: var(--card); border: 1px solid var(--line);
     border-radius: 14px; padding: 24px 20px 22px; overflow: hidden;
@@ -101,13 +101,24 @@
   .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
   .card:nth-child(1)::before { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
   .card:nth-child(2)::before { background: linear-gradient(90deg, #db2777, #f472b6); }
-  .card:nth-child(3)::before { background: linear-gradient(90deg, #f59e0b, #14b8a6); }
+  .card:nth-child(3)::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .card:nth-child(4)::before { background: linear-gradient(90deg, #14b8a6, #7c3aed); }
   .card:nth-child(1) { background: linear-gradient(180deg, rgba(124, 58, 237, 0.05), #fff 60%); }
   .card:nth-child(2) { background: linear-gradient(180deg, rgba(219, 39, 119, 0.05), #fff 60%); }
   .card:nth-child(3) { background: linear-gradient(180deg, rgba(245, 158, 11, 0.06), #fff 60%); }
+  .card:nth-child(4) { background: linear-gradient(180deg, rgba(20, 184, 166, 0.06), #fff 60%); }
   .card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -18px rgba(109, 40, 217, 0.35); }
-  .card h3 { font-size: 1rem; margin-bottom: 8px; }
+  .card h3 { font-size: 1.12rem; margin-bottom: 8px; }
   .card p { font-size: 0.92rem; color: var(--muted); line-height: 1.55; }
+  .card p.meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .card p.meta span {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted);
+    background: rgba(255, 255, 255, 0.7);
+  }
+  .card p.meta .stat { color: var(--violet-deep); border-color: rgba(124, 58, 237, 0.28);
+    background: rgba(124, 58, 237, 0.07); }
+  .card p.more { margin-top: 12px; font-size: 0.9rem; }
 
   .contact-box {
     margin-top: 28px; border-radius: 14px; padding: 26px;
@@ -154,7 +165,7 @@
     <nav class="links" aria-label="Site navigation">
       <a href="/yapoff/">YapOff</a>
       <a href="#about">About</a>
-      <a href="#work">What we do</a>
+      <a href="#work">Titles</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -168,38 +179,47 @@
       <div class="blob teal"></div>
       <div class="blob amber"></div>
     </div>
-    <span class="kicker">Independent software studio</span>
-    <h1>Small studio.<br>Carefully made software.</h1>
-    <p class="lede">Barnisan LLC designs and builds thoughtful apps — with an eye for detail, and a bias for shipping things we're proud of.</p>
+    <span class="kicker">Independent game studio</span>
+    <h1>Small studio.<br>Carefully made games.</h1>
+    <p class="lede">Barnisan LLC designs and builds games for Apple platforms — with an eye for detail, and a bias for shipping things we're proud of.</p>
   </div>
 
   <section id="about">
     <div class="wrap">
       <h2>About</h2>
       <p>Barnisan LLC is an independent software company based in the United States. We're a small studio by design: a handful of titles in development at once, each built with care and maintained for the long run.</p>
-      <p>Our current focus is consumer apps for Apple platforms, alongside software for live, interactive communities — a space we know well from years on the creator side of streaming.</p>
+      <p>We make games for Apple platforms. We come at it from years on the creator side of streaming, which is where the interest in things people play together came from.</p>
     </div>
   </section>
 
   <section id="work">
     <div class="wrap">
-      <h2>What we do</h2>
-      <p>Everything is designed and developed in-house, from first sketch to release.</p>
+      <h2>Titles</h2>
+      <p>Four games in development, all designed and developed in-house, from first sketch to release.</p>
       <div class="grid">
         <div class="card">
-          <h3>Consumer apps</h3>
-          <p>Focused, well-crafted apps for iPhone, iPad, and Mac — simple tools that respect your time.</p>
+          <h3>YapOff</h3>
+          <p>A pass-the-phone party word game. Two to eight players, one device, no internet.</p>
+          <p class="meta"><span class="plat">iPhone &amp; iPad</span><span class="stat">Nearest to release</span></p>
+          <p class="more"><a class="plain" href="/yapoff/">See more &rarr;</a></p>
         </div>
         <div class="card">
-          <h3>Community &amp; live tools</h3>
-          <p>Software for creators and live communities: companions, overlays, and interactive experiences.</p>
+          <h3>Governor</h3>
+          <p>A city builder. Lay out a settlement and keep it standing.</p>
+          <p class="meta"><span class="plat">iPhone &amp; iPad</span><span class="stat">In development</span></p>
         </div>
         <div class="card">
-          <h3>Design &amp; prototyping</h3>
-          <p>Rapid product design and prototyping — turning rough ideas into things you can actually use.</p>
+          <h3>Rusalki</h3>
+          <p>An underwater 3D role-playing game. Make a character, explore a reef world.</p>
+          <p class="meta"><span class="plat">iPhone, iPad &amp; Mac</span><span class="stat">In development</span></p>
+        </div>
+        <div class="card">
+          <h3>Unfurrled</h3>
+          <p>A physics puzzle-platformer about a cat and a ball of yarn, across room-themed levels.</p>
+          <p class="meta"><span class="plat">iPhone &amp; iPad</span><span class="stat">In development</span></p>
         </div>
       </div>
-      <p style="margin-top: 28px;">Our first titles are currently in development and headed for the App Store — nearest of them is <a class="plain" href="/yapoff/">YapOff</a>, a pass-the-phone party word game. Want to know when they land? <a class="plain" href="#contact">Get in touch</a>.</p>
+      <p style="margin-top: 28px;">None of them are on the App Store yet — they're all still being built. Want to know when they land? <a class="plain" href="#contact">Get in touch</a>.</p>
     </div>
   </section>
 
