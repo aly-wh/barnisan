@@ -50,7 +50,7 @@
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
-  .nav { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding-block: 15px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
   .brand svg { display: block; border-radius: 8px; }
   .wordmark { font-size: 1.15rem; }
@@ -59,7 +59,7 @@
   nav.links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
   nav.links a:hover { color: var(--violet-deep); }
 
-  .hero { position: relative; padding: 96px 0 84px; }
+  .hero { position: relative; padding-block: 96px 84px; }
   .hero-art { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
   .blob { position: absolute; border-radius: 50%; }
   .blob.violet { width: 520px; height: 520px; top: -180px; right: -140px;
@@ -138,7 +138,7 @@
   @media (max-width: 640px) {
     .grid { grid-template-columns: 1fr; }
     nav.links { display: none; }
-    .hero { padding: 68px 0 56px; }
+    .hero { padding-block: 68px 56px; }
   }
 </style>
 </head>
@@ -152,6 +152,7 @@
       <div class="wordmark">Barnisan<span>LLC</span></div>
     </a>
     <nav class="links" aria-label="Site navigation">
+      <a href="/yapoff/">YapOff</a>
       <a href="#about">About</a>
       <a href="#work">What we do</a>
       <a href="#contact">Contact</a>
@@ -175,7 +176,7 @@
   <section id="about">
     <div class="wrap">
       <h2>About</h2>
-      <p>Barnisan LLC is an independent software company based in the United States. We're a small studio by design: one product at a time, built with care, and maintained for the long run.</p>
+      <p>Barnisan LLC is an independent software company based in the United States. We're a small studio by design: a handful of titles in development at once, each built with care and maintained for the long run.</p>
       <p>Our current focus is consumer apps for Apple platforms, alongside software for live, interactive communities — a space we know well from years on the creator side of streaming.</p>
     </div>
   </section>
@@ -198,7 +199,7 @@
           <p>Rapid product design and prototyping — turning rough ideas into things you can actually use.</p>
         </div>
       </div>
-      <p style="margin-top: 28px;">Our first titles are currently in development and headed for the App Store. Want to know when they land? <a class="plain" href="#contact">Get in touch</a>.</p>
+      <p style="margin-top: 28px;">Our first titles are currently in development and headed for the App Store — nearest of them is <a class="plain" href="/yapoff/">YapOff</a>, a pass-the-phone party word game. Want to know when they land? <a class="plain" href="#contact">Get in touch</a>.</p>
     </div>
   </section>
 

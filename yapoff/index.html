@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YapOff — Pass-the-phone party word game — Barnisan LLC</title>
+<meta name="description" content="YapOff is a pass-the-phone party word game for 2–8 players on one device. 201 prompts, 666 word cards, 30-second turns. No accounts, no internet, no ads, nothing collected. In development from Barnisan LLC.">
+<link rel="canonical" href="https://barnisan.com/yapoff/">
+<meta property="og:title" content="YapOff — Pass the phone. Start yapping.">
+<meta property="og:description" content="A pass-the-phone party word game for 2–8 players on one device. No accounts, no internet, no ads, nothing collected.">
+<meta property="og:url" content="https://barnisan.com/yapoff/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://barnisan.com/yapoff/img/og-yapoff.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#140626">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23EC4899'/%3E%3Cstop offset='.55' stop-color='%23F97316'/%3E%3Cstop offset='1' stop-color='%23FCD34D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%23140626'/%3E%3Ctext x='32' y='44' font-family='Avenir,Helvetica,sans-serif' font-size='34' font-weight='bold' fill='url(%23g)' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --void: #140626;
+    --void2: #1F0E3A;
+    --grape: #5B3D8A;
+    --grape-lt: #8B5FBF;
+    --teal: #2DD4BF;
+    --teal-glow: #5EEAD4;
+    --magenta: #EC4899;
+    --magenta-hi: #FF5FAA;
+    --orange: #F97316;
+    --yellow: #FCD34D;
+    --ink: #08020F;
+    --cream: #FFF8E7;
+    --cream-dim: #C9B8E0;
+    --divider: #3A2554;
+    --hot: linear-gradient(90deg, #EC4899, #F97316 55%, #FCD34D);
+    --rim: linear-gradient(135deg, #2DD4BF, #5B3D8A 55%, #EC4899);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { overflow-x: hidden; }
+  body {
+    background: var(--void);
+    color: var(--cream);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  .topstripe { height: 4px; background: var(--hot); }
+  a { color: var(--teal-glow); }
+  :focus-visible { outline: 3px solid var(--teal-glow); outline-offset: 3px; border-radius: 6px; }
+
+  /* ---- header ---- */
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(20, 6, 38, 0.86);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--divider);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding-block: 14px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--cream); }
+  .brand svg { display: block; border-radius: 8px; }
+  .wordmark { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; font-family: Georgia, "Times New Roman", serif; }
+  .wordmark span { color: var(--cream-dim); font-family: inherit; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.08em; margin-left: 6px; vertical-align: 2px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+  nav.links { display: flex; gap: 20px; }
+  nav.links a { color: var(--cream-dim); text-decoration: none; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.02em; }
+  nav.links a:hover { color: var(--teal-glow); }
+
+  /* ---- hero ---- */
+  .hero { position: relative; text-align: center; padding-block: 64px 56px; }
+  .hero-art { position: absolute; inset: -60px 0 -40px; z-index: -1; pointer-events: none; }
+  .blob { position: absolute; border-radius: 50%; }
+  .blob.magenta { width: 620px; height: 620px; top: -180px; left: 50%; transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(236, 72, 153, 0.30), transparent 70%); }
+  .blob.teal { width: 460px; height: 460px; top: 60px; right: -170px;
+    background: radial-gradient(closest-side, rgba(45, 212, 191, 0.20), transparent 70%); }
+  .blob.grape { width: 520px; height: 520px; bottom: -240px; left: -180px;
+    background: radial-gradient(closest-side, rgba(139, 95, 191, 0.28), transparent 70%); }
+
+  .logo { width: min(340px, 74vw); height: auto; display: block; margin: 0 auto 26px;
+    filter: drop-shadow(0 18px 40px rgba(236, 72, 153, 0.35)); }
+  .tagline {
+    font-size: clamp(1.5rem, 4.6vw, 2.15rem); font-weight: 800; line-height: 1.2;
+    letter-spacing: -0.015em; margin-bottom: 18px;
+  }
+  .tagline em { font-style: normal; background: var(--hot);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--magenta-hi); }
+  .hero p.lede { font-size: 1.12rem; color: var(--cream-dim); max-width: 33em; margin: 0 auto; }
+
+  .status {
+    display: inline-flex; align-items: center; gap: 9px; margin: 26px 0 0;
+    font-size: 0.76rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--yellow); background: rgba(252, 211, 77, 0.09);
+    border: 1px solid rgba(252, 211, 77, 0.34); padding: 8px 16px; border-radius: 999px;
+  }
+  .status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--yellow); flex: none; }
+  .hero .note { font-size: 0.92rem; color: var(--cream-dim); margin-top: 14px; }
+
+  /* ---- sections ---- */
+  section { padding: 62px 0; border-top: 1px solid var(--divider); }
+  section h2 {
+    font-size: 0.8rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 14px;
+  }
+  section h2 + p.big, p.big {
+    font-size: clamp(1.25rem, 3.2vw, 1.6rem); font-weight: 700; line-height: 1.35;
+    letter-spacing: -0.01em; color: var(--cream); max-width: 20em;
+  }
+  section p { color: var(--cream-dim); max-width: 40em; }
+  p + p { margin-top: 14px; }
+
+  /* ---- how it plays ---- */
+  .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; counter-reset: s; }
+  .step {
+    position: relative; background: var(--void2); border: 1px solid var(--divider);
+    border-radius: 16px; padding: 22px 20px 20px;
+  }
+  .step::before {
+    counter-increment: s; content: counter(s);
+    display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 9px; margin-bottom: 12px;
+    font-size: 0.9rem; font-weight: 800; color: var(--ink); background: var(--hot);
+  }
+  .step h3 { font-size: 1.02rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .step p { font-size: 0.93rem; line-height: 1.55; max-width: none; }
+
+  /* ---- prompt / chips demo ---- */
+  .demo {
+    margin-top: 30px; border-radius: 18px; padding: 26px 22px;
+    background: linear-gradient(180deg, rgba(91, 61, 138, 0.30), rgba(31, 14, 58, 0.65));
+    border: 1px solid var(--divider);
+  }
+  .demo .plabel, .demo .wlabel {
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 12px;
+  }
+  .prompt {
+    display: inline-block; color: var(--yellow); font-weight: 700; font-size: 1.02rem; line-height: 1.4;
+    border: 1.5px solid rgba(236, 72, 153, 0.55); border-radius: 999px; padding: 11px 20px;
+    background: rgba(20, 6, 38, 0.5);
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 8px; }
+  .chip {
+    font-weight: 700; font-size: 0.95rem; padding: 8px 14px; border-radius: 11px;
+    border: 1.5px solid rgba(45, 212, 191, 0.45); background: rgba(31, 14, 58, 0.9); color: var(--cream);
+  }
+  .chip.picked { background: var(--hot); color: var(--ink); border-color: var(--ink); }
+  .demo .wlabel { margin-top: 26px; }
+  .demo .caption { font-size: 0.88rem; color: var(--cream-dim); margin-top: 20px; max-width: none; }
+
+  /* ---- shots ---- */
+  .shots {
+    display: flex; gap: 16px; overflow-x: auto; margin-top: 30px;
+    padding: 4px 24px 18px; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .shot { flex: none; width: 232px; scroll-snap-align: center; }
+  .shot img {
+    width: 100%; height: auto; display: block; border-radius: 20px;
+    border: 1px solid var(--divider); background: var(--void2);
+    box-shadow: 0 20px 44px -24px rgba(236, 72, 153, 0.55);
+  }
+  .shot figcaption { font-size: 0.82rem; color: var(--cream-dim); margin-top: 11px; text-align: center; line-height: 1.45; }
+  .shots-hint { font-size: 0.84rem; color: var(--grape-lt); margin-top: 2px; }
+
+  /* ---- inside / stats ---- */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+  .stat {
+    background: var(--void2); border: 1px solid var(--divider); border-radius: 16px;
+    padding: 20px 18px; text-align: center;
+  }
+  .stat .n {
+    font-size: 1.75rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
+    background: var(--hot); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: var(--magenta-hi);
+  }
+  .stat .k { font-size: 0.83rem; color: var(--cream-dim); margin-top: 5px; line-height: 1.4; }
+  ul.plain { list-style: none; margin-top: 26px; display: grid; gap: 11px; }
+  ul.plain li { position: relative; padding-left: 26px; color: var(--cream-dim); font-size: 0.97rem; }
+  ul.plain li::before {
+    content: ""; position: absolute; left: 0; top: 0.62em;
+    width: 9px; height: 9px; border-radius: 3px; background: var(--hot);
+  }
+
+  /* ---- privacy ---- */
+  .privacy-box {
+    margin-top: 28px; border-radius: 18px; padding: 30px 26px;
+    border: 1.5px solid transparent;
+    background: linear-gradient(var(--void2), var(--void2)) padding-box, var(--rim) border-box;
+  }
+  .nots { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+  .not {
+    font-size: 0.82rem; font-weight: 800; letter-spacing: 0.04em;
+    color: var(--teal-glow); border: 1px solid rgba(45, 212, 191, 0.42);
+    background: rgba(45, 212, 191, 0.07); padding: 8px 14px; border-radius: 999px;
+  }
+  .privacy-box p { font-size: 0.97rem; max-width: none; }
+
+  /* ---- cta ---- */
+  .cta-box {
+    margin-top: 28px; border-radius: 18px; padding: 26px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;
+    border: 1.5px solid transparent;
+    background: linear-gradient(var(--void2), var(--void2)) padding-box, var(--hot) border-box;
+  }
+  .cta-box .label {
+    font-size: 0.74rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal);
+  }
+  .cta-box .email { font-size: 1.08rem; font-weight: 800; margin-top: 3px; color: var(--cream); }
+  a.button {
+    display: inline-block; background: var(--hot); color: var(--ink); text-decoration: none;
+    font-weight: 800; font-size: 0.95rem; letter-spacing: 0.03em; padding: 13px 24px; border-radius: 12px;
+    border: 2px solid var(--ink);
+    box-shadow: 0 12px 26px -14px rgba(236, 72, 153, 0.75);
+    transition: transform .15s ease, filter .15s ease;
+  }
+  a.button:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  a.plain { color: var(--teal-glow); text-decoration: none; font-weight: 700; }
+  a.plain:hover { color: var(--yellow); text-decoration: underline; }
+
+  footer {
+    border-top: 2px solid; border-image: var(--hot) 1;
+    padding: 30px 0 46px; background: linear-gradient(180deg, rgba(236, 72, 153, 0.06), transparent);
+  }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+  footer p { color: var(--cream-dim); font-size: 0.85rem; }
+
+  @media (max-width: 680px) {
+    .steps, .stats { grid-template-columns: 1fr; }
+    nav.links { gap: 14px; }
+    nav.links a.hide-sm { display: none; }
+    .hero { padding-block: 44px; }
+    .shots { padding-left: 24px; padding-right: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    a.button { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topstripe"></div>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="Barnisan LLC home">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="bg-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset=".55" stop-color="#db2777"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#bg-g)"/><text x="32" y="44" font-family="Georgia,serif" font-size="36" font-weight="bold" fill="#fffcf9" text-anchor="middle">B</text></svg>
+      <div class="wordmark">Barnisan<span>LLC</span></div>
+    </a>
+    <nav class="links" aria-label="Site navigation">
+      <a class="hide-sm" href="#how">How it plays</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div class="hero-art" aria-hidden="true">
+      <div class="blob magenta"></div>
+      <div class="blob teal"></div>
+      <div class="blob grape"></div>
+    </div>
+    <img class="logo" src="img/yapoff-logo.webp" width="560" height="560"
+         alt="YapOff logo: the word YAP in lime green above the word OFF in salmon pink, in a fuzzy cartoon typeface, with the O drawn as a wide-open yawning mouth.">
+    <h1 class="tagline">Pass the phone.<br><em>Start yapping.</em></h1>
+    <p class="lede">A party word game about building gloriously terrible sentences out of whatever words you happen to be dealt. 2–8 players, one device, no internet.</p>
+    <p class="status"><span class="dot" aria-hidden="true"></span>In development</p>
+    <p class="note">Coming to the App Store. <a class="plain" href="/#contact">Email us</a> if you'd like to know when it lands.</p>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <h2>How it plays</h2>
+      <p class="big">Someone has to explain why the goose was at the wedding. Tonight, that someone is you.</p>
+      <div class="steps">
+        <div class="step">
+          <h3>A prompt goes up</h3>
+          <p>One prompt on screen for everyone to answer — somewhere between mildly unhinged and fully feral.</p>
+        </div>
+        <div class="step">
+          <h3>You get 20 random words</h3>
+          <p>Dealt in balanced hands, so there's always something to build with. Thirty seconds on the clock.</p>
+        </div>
+        <div class="step">
+          <h3>Pass the phone along</h3>
+          <p>No peeking. Everyone taps together the funniest answer they can manage out of the hand they were given.</p>
+        </div>
+        <div class="step">
+          <h3>The judge picks a winner</h3>
+          <p>All the answers get read out. First player to 5 prompt cards takes the game.</p>
+        </div>
+      </div>
+
+      <div class="demo">
+        <p class="plabel">The prompt</p>
+        <p class="prompt">Write a review of a gym run by monks.</p>
+        <p class="wlabel">Your words — tap to add</p>
+        <div class="chips">
+          <span class="chip picked">huh</span>
+          <span class="chip picked">terrible</span>
+          <span class="chip picked">orchestrated</span>
+          <span class="chip picked">across</span>
+          <span class="chip">immediately</span>
+          <span class="chip">toilet</span>
+          <span class="chip">officiated</span>
+          <span class="chip">fragile</span>
+          <span class="chip">client-ready</span>
+          <span class="chip">borrowed</span>
+          <span class="chip">religious</span>
+          <span class="chip">politician</span>
+          <span class="chip">stars</span>
+        </div>
+        <p class="caption">You never get the words you want. You get <strong>alpaca</strong>, <strong>respectfully</strong> and <strong>plunger</strong>, and you have to make it work anyway. The terrible hands are the best ones.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="look">
+    <div class="wrap">
+      <h2>A look at it</h2>
+      <p class="shots-hint">Scroll sideways for more.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot">
+        <img src="img/01-setup.webp" width="620" height="1347" loading="lazy" alt="Setup screen: choosing the number of players and entering their names, with a note that the first to 5 prompt cards wins.">
+        <figcaption>Set up the table</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/02-prompt.webp" width="620" height="1347" loading="lazy" alt="The round's prompt card displayed large on a dark purple screen.">
+        <figcaption>The prompt lands</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/03-handoff.webp" width="620" height="1347" loading="lazy" alt="Handoff screen reading &quot;pass the phone to Dog — everyone else: look away!&quot; above a button labelled &quot;I've got the phone!&quot;">
+        <figcaption>Pass it along, no peeking</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/04-building.webp" width="620" height="1347" loading="lazy" alt="Building an answer: a countdown timer, the prompt, four chosen word chips forming a sentence, and a bank of remaining word cards to tap.">
+        <figcaption>Thirty seconds to build</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/05-judging.webp" width="620" height="1347" loading="lazy" alt="The judging screen, where the judge chooses between the players' submitted answers.">
+        <figcaption>The judge decides</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/06-round-result.webp" width="620" height="1347" loading="lazy" alt="Round result screen showing a trophy, the winning answer, and the current scoreboard.">
+        <figcaption>Somebody wins, briefly</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="inside">
+    <div class="wrap">
+      <h2>What's inside</h2>
+      <div class="stats">
+        <div class="stat"><div class="n">201</div><div class="k">prompts, mildly unhinged to fully feral</div></div>
+        <div class="stat"><div class="n">666</div><div class="k">word cards, dealt in balanced hands</div></div>
+        <div class="stat"><div class="n">2–8</div><div class="k">players, all on one device</div></div>
+      </div>
+      <ul class="plain">
+        <li>AI players to fill an empty seat — and to judge the round when it's just the two of you.</li>
+        <li>Thirty-second turns. First to 5 prompt cards wins.</li>
+        <li>Open it and play. There is nothing to set up and nothing to sign into.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="wrap">
+      <h2>Privacy</h2>
+      <p class="big">It doesn't collect anything, because there's nowhere for it to send anything.</p>
+      <div class="privacy-box">
+        <div class="nots">
+          <span class="not">No accounts</span>
+          <span class="not">No internet</span>
+          <span class="not">No ads</span>
+          <span class="not">No tracking</span>
+          <span class="not">No data collected</span>
+        </div>
+        <p>YapOff has no networking code in it at all — no analytics, no crash reporting, no advertising, no third-party SDKs. Player names live in memory for the length of a game and are gone when you close it. Read the full <a class="plain" href="/privacy/">privacy policy</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="good-for">
+    <div class="wrap">
+      <h2>Good for</h2>
+      <p class="big">Kitchen tables. Long car journeys. The pub. The group chat that finally met up in person.</p>
+      <p style="margin-top:16px;">Anyone who has ever had to explain themselves and made it worse.</p>
+      <div class="cta-box">
+        <div>
+          <div class="label">Questions, or want a heads-up at launch?</div>
+          <div class="email">info@barnisan.com</div>
+        </div>
+        <a class="button" href="mailto:info@barnisan.com?subject=YapOff">Send an email</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Barnisan LLC. All rights reserved.</p>
+    <p><a class="plain" href="/">Barnisan</a> &nbsp;·&nbsp; <a class="plain" href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a class="plain" href="/#contact">Contact</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
