@@ -50,7 +50,7 @@
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
-  .nav { display: flex; align-items: center; justify-content: space-between; padding: 15px 0; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding-block: 15px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
   .brand svg { display: block; border-radius: 8px; }
   .wordmark { font-size: 1.15rem; }
@@ -59,7 +59,7 @@
   nav.links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
   nav.links a:hover { color: var(--violet-deep); }
 
-  .hero { position: relative; padding: 96px 0 84px; }
+  .hero { position: relative; padding-block: 96px 84px; }
   .hero-art { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
   .blob { position: absolute; border-radius: 50%; }
   .blob.violet { width: 520px; height: 520px; top: -180px; right: -140px;
@@ -138,7 +138,7 @@
   @media (max-width: 640px) {
     .grid { grid-template-columns: 1fr; }
     nav.links { display: none; }
-    .hero { padding: 68px 0 56px; }
+    .hero { padding-block: 68px 56px; }
   }
 </style>
 </head>
