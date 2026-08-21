@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Barnisan LLC — Independent Software Studio</title>
-<meta name="description" content="Barnisan LLC is an independent software studio based in the United States, building thoughtful apps for Apple platforms and tools for live, interactive communities.">
+<meta name="description" content="Barnisan LLC is an independent software studio based in the United States, building games for Apple platforms. First title: YapOff, a pass-the-phone party word game, in development.">
 <link rel="canonical" href="https://barnisan.com/">
 <meta property="og:title" content="Barnisan LLC">
-<meta property="og:description" content="An independent software studio building thoughtful apps and tools for live, interactive communities.">
+<meta property="og:description" content="An independent software studio building games for Apple platforms.">
 <meta property="og:url" content="https://barnisan.com/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#7c3aed">
@@ -58,6 +58,11 @@
   nav.links { display: flex; gap: 22px; }
   nav.links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
   nav.links a:hover { color: var(--violet-deep); }
+  .menu-toggle {
+    display: none; background: none; cursor: pointer; line-height: 0;
+    border: 1px solid var(--line); border-radius: 9px; padding: 7px 9px; color: var(--muted);
+  }
+  .menu-toggle:hover { color: var(--violet-deep); border-color: rgba(124, 58, 237, 0.35); }
 
   .hero { position: relative; padding-block: 96px 84px; }
   .hero-art { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
@@ -92,7 +97,8 @@
   section p { color: var(--body); max-width: 42em; }
   section p + p { margin-top: 14px; }
 
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 30px; }
+  .grid.one { grid-template-columns: 1fr; }
   .card {
     position: relative; background: var(--card); border: 1px solid var(--line);
     border-radius: 14px; padding: 24px 20px 22px; overflow: hidden;
@@ -101,13 +107,24 @@
   .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
   .card:nth-child(1)::before { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
   .card:nth-child(2)::before { background: linear-gradient(90deg, #db2777, #f472b6); }
-  .card:nth-child(3)::before { background: linear-gradient(90deg, #f59e0b, #14b8a6); }
+  .card:nth-child(3)::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .card:nth-child(4)::before { background: linear-gradient(90deg, #14b8a6, #7c3aed); }
   .card:nth-child(1) { background: linear-gradient(180deg, rgba(124, 58, 237, 0.05), #fff 60%); }
   .card:nth-child(2) { background: linear-gradient(180deg, rgba(219, 39, 119, 0.05), #fff 60%); }
   .card:nth-child(3) { background: linear-gradient(180deg, rgba(245, 158, 11, 0.06), #fff 60%); }
+  .card:nth-child(4) { background: linear-gradient(180deg, rgba(20, 184, 166, 0.06), #fff 60%); }
   .card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -18px rgba(109, 40, 217, 0.35); }
-  .card h3 { font-size: 1rem; margin-bottom: 8px; }
+  .card h3 { font-size: 1.12rem; margin-bottom: 8px; }
   .card p { font-size: 0.92rem; color: var(--muted); line-height: 1.55; }
+  .card p.meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .card p.meta span {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 4px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted);
+    background: rgba(255, 255, 255, 0.7);
+  }
+  .card p.meta .stat { color: var(--violet-deep); border-color: rgba(124, 58, 237, 0.28);
+    background: rgba(124, 58, 237, 0.07); }
+  .card p.more { margin-top: 12px; font-size: 0.9rem; }
 
   .contact-box {
     margin-top: 28px; border-radius: 14px; padding: 26px;
@@ -137,7 +154,15 @@
 
   @media (max-width: 640px) {
     .grid { grid-template-columns: 1fr; }
-    nav.links { display: none; }
+    .menu-toggle { display: block; }
+    nav.links {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0; padding: 4px 24px 12px;
+      background: var(--card); border-bottom: 1px solid var(--line);
+      box-shadow: 0 16px 30px -22px rgba(109, 40, 217, 0.45);
+    }
+    header[data-nav-open="true"] nav.links { display: flex; }
+    nav.links a { padding: 12px 0; font-size: 0.98rem; border-top: 1px solid var(--line); }
     .hero { padding-block: 68px 56px; }
   }
 </style>
@@ -151,11 +176,14 @@
       <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="bg-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset=".55" stop-color="#db2777"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#bg-g)"/><text x="32" y="44" font-family="Georgia,serif" font-size="36" font-weight="bold" fill="#fffcf9" text-anchor="middle">B</text></svg>
       <div class="wordmark">Barnisan<span>LLC</span></div>
     </a>
-    <nav class="links" aria-label="Site navigation">
+    <nav class="links" id="sitenav" aria-label="Site navigation">
+      <a href="/yapoff/">YapOff</a>
       <a href="#about">About</a>
-      <a href="#work">What we do</a>
       <a href="#contact">Contact</a>
     </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="sitenav" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+      </button>
   </div>
 </header>
 
@@ -169,36 +197,30 @@
     </div>
     <span class="kicker">Independent software studio</span>
     <h1>Small studio.<br>Carefully made software.</h1>
-    <p class="lede">Barnisan LLC designs and builds thoughtful apps — with an eye for detail, and a bias for shipping things we're proud of.</p>
+    <p class="lede">Barnisan LLC designs and builds games for Apple platforms — with an eye for detail, and a bias for shipping things we're proud of.</p>
   </div>
 
   <section id="about">
     <div class="wrap">
       <h2>About</h2>
-      <p>Barnisan LLC is an independent software company based in the United States. We're a small studio by design: one product at a time, built with care, and maintained for the long run.</p>
-      <p>Our current focus is consumer apps for Apple platforms, alongside software for live, interactive communities — a space we know well from years on the creator side of streaming.</p>
+      <p>Barnisan LLC is an independent software company based in the United States. We're a small studio by design: a handful of titles in development at once, each built with care and maintained for the long run.</p>
+      <p>We make games for Apple platforms. We come at it from years on the creator side of streaming, which is where the interest in things people play together came from.</p>
     </div>
   </section>
 
   <section id="work">
     <div class="wrap">
-      <h2>What we do</h2>
+      <h2>What we're making</h2>
       <p>Everything is designed and developed in-house, from first sketch to release.</p>
-      <div class="grid">
+      <div class="grid one">
         <div class="card">
-          <h3>Consumer apps</h3>
-          <p>Focused, well-crafted apps for iPhone, iPad, and Mac — simple tools that respect your time.</p>
-        </div>
-        <div class="card">
-          <h3>Community &amp; live tools</h3>
-          <p>Software for creators and live communities: companions, overlays, and interactive experiences.</p>
-        </div>
-        <div class="card">
-          <h3>Design &amp; prototyping</h3>
-          <p>Rapid product design and prototyping — turning rough ideas into things you can actually use.</p>
+          <h3>YapOff</h3>
+          <p>A pass-the-phone party word game. Two to eight players, one device, no internet — built to be played round a table.</p>
+          <p class="meta"><span class="plat">iPhone &amp; iPad</span><span class="stat">In development</span></p>
+          <p class="more"><a class="plain" href="/yapoff/">See more &rarr;</a></p>
         </div>
       </div>
-      <p style="margin-top: 28px;">Our first titles are currently in development and headed for the App Store. Want to know when they land? <a class="plain" href="#contact">Get in touch</a>.</p>
+      <p style="margin-top: 28px;">YapOff isn't on the App Store yet — it's still being built. Want to know when it lands? <a class="plain" href="#contact">Get in touch</a>.</p>
     </div>
   </section>
 
@@ -223,6 +245,30 @@
     <p><a class="plain" href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a class="plain" href="https://barnisan.com">barnisan.com</a></p>
   </div>
 </footer>
+
+<script>
+(function () {
+  var header = document.querySelector('header');
+  var toggle = document.querySelector('.menu-toggle');
+  if (!header || !toggle) return;
+  function set(open) {
+    header.setAttribute('data-nav-open', open ? 'true' : 'false');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  toggle.addEventListener('click', function () {
+    set(header.getAttribute('data-nav-open') !== 'true');
+  });
+  header.querySelectorAll('nav.links a').forEach(function (a) {
+    a.addEventListener('click', function () { set(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && header.getAttribute('data-nav-open') === 'true') {
+      set(false);
+      toggle.focus();
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
