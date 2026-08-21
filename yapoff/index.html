@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YapOff — Pass-the-phone party word game — Barnisan LLC</title>
-<meta name="description" content="YapOff is a pass-the-phone party word game for 2–8 players on one device. 201 prompts, 666 word cards, 30-second turns. No accounts, no internet, no ads, nothing collected. In development from Barnisan LLC.">
+<title>YapOff — Pass-the-phone party word game — Barnisan</title>
+<meta name="description" content="YapOff is a pass-the-phone party word game for 2–8 players on one device. 201 prompts, 666 word cards, 30-second turns. No accounts, no internet, no ads, nothing collected. In development from Barnisan.">
 <link rel="canonical" href="https://barnisan.com/yapoff/">
 <meta property="og:title" content="YapOff — Pass the phone. Start yapping.">
 <meta property="og:description" content="A pass-the-phone party word game for 2–8 players on one device. No accounts, no internet, no ads, nothing collected.">
@@ -48,6 +48,8 @@
   }
   .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
   .topstripe { height: 4px; background: var(--hot); }
+  .brand .bmark { display: block; width: 30px; height: auto; padding: 5px 6px;
+    background: #F7F3EC; border-radius: 999px; box-sizing: content-box; }
   a { color: var(--teal-glow); }
   :focus-visible { outline: 3px solid var(--teal-glow); outline-offset: 3px; border-radius: 6px; }
 
@@ -257,9 +259,9 @@
 <div class="topstripe"></div>
 <header>
   <div class="wrap nav">
-    <a class="brand" href="/" aria-label="Barnisan LLC home">
-      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="bg-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset=".55" stop-color="#db2777"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#bg-g)"/><text x="32" y="44" font-family="Georgia,serif" font-size="36" font-weight="bold" fill="#fffcf9" text-anchor="middle">B</text></svg>
-      <div class="wordmark">Barnisan<span>LLC</span></div>
+    <a class="brand" href="/" aria-label="Barnisan home">
+      <img class="bmark" src="/img/barnisan-mark.webp" width="30" height="24" alt="" decoding="async">
+      <div class="wordmark">Barnisan</div>
     </a>
     <nav class="links" id="sitenav" aria-label="Site navigation">
       <a href="#how">How it plays</a>
@@ -341,28 +343,44 @@
     </div>
     <div class="shots">
       <figure class="shot">
-        <img src="img/01-setup.webp" width="620" height="1347" loading="lazy" alt="Setup screen: choosing the number of players and entering their names, with a note that the first to 5 prompt cards wins.">
+        <img src="img/01-setup.webp" width="600" height="1231" loading="lazy" alt="Setup screen: the YapOff logo above a player count of three, with Bear, Panda and Frog each set to Human, a Start Game button, and a note that the first to five prompt cards wins.">
         <figcaption>Set up the table</figcaption>
       </figure>
       <figure class="shot">
-        <img src="img/02-prompt.webp" width="620" height="1347" loading="lazy" alt="The round's prompt card displayed large on a dark purple screen.">
+        <img src="img/02-prompt.webp" width="600" height="1231" loading="lazy" alt="Round prompt card reading &ldquo;Explain why your car is full of toilet paper rolls.&rdquo; with a Get Different Prompt button, a badge showing Unicorn is judging, and a Let&rsquo;s Go button.">
         <figcaption>The prompt lands</figcaption>
       </figure>
       <figure class="shot">
-        <img src="img/03-handoff.webp" width="620" height="1347" loading="lazy" alt="Handoff screen reading &quot;pass the phone to Dog — everyone else: look away!&quot; above a button labelled &quot;I've got the phone!&quot;">
+        <img src="img/03-handoff.webp" width="600" height="1231" loading="lazy" alt="Handoff screen with a pointing hand, reading &ldquo;Pass the phone to Fox &mdash; everyone else: look away!&rdquo; above a button labelled &ldquo;I&rsquo;ve got the phone!&rdquo;">
         <figcaption>Pass it along, no peeking</figcaption>
       </figure>
       <figure class="shot">
-        <img src="img/04-building.webp" width="620" height="1347" loading="lazy" alt="Building an answer: a countdown timer, the prompt, four chosen word chips forming a sentence, and a bank of remaining word cards to tap.">
+        <img src="img/04-building.webp" width="600" height="1231" loading="lazy" alt="Building an answer as Unicorn: a countdown at three seconds, the prompt about the &rsquo;67 incident, nine chosen word chips forming a sentence, and a bank of remaining words to tap, with Clear and Yap buttons.">
         <figcaption>Thirty seconds to build</figcaption>
       </figure>
       <figure class="shot">
-        <img src="img/05-judging.webp" width="620" height="1347" loading="lazy" alt="The judging screen, where the judge chooses between the players' submitted answers.">
+        <img src="img/05-judging.webp" width="600" height="1231" loading="lazy" alt="Judging screen headed &ldquo;Judge: Unicorn&rdquo; with the toilet paper prompt and two submitted answers to tap between.">
         <figcaption>The judge decides</figcaption>
       </figure>
       <figure class="shot">
-        <img src="img/06-round-result.webp" width="620" height="1347" loading="lazy" alt="Round result screen showing a trophy, the winning answer, and the current scoreboard.">
+        <img src="img/06-result.webp" width="600" height="1231" loading="lazy" alt="Round result: a trophy and &ldquo;Fox wins this round!&rdquo; above the winning answer and a scoreboard showing Fox on one point.">
         <figcaption>Somebody wins, briefly</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/07-prompt-two.webp" width="600" height="1231" loading="lazy" alt="A fresh round prompt about being restrained at the buffet table, with a badge showing Tiger is judging.">
+        <figcaption>Next round, new judge</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/08-result-two.webp" width="600" height="1231" loading="lazy" alt="Round result: Tiger wins with &ldquo;a greasy dinner unleashed errr spilled pepperoni&rdquo;, scoreboard showing Fox and Tiger on one point each.">
+        <figcaption>The scores start moving</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/09-judging-two.webp" width="600" height="1231" loading="lazy" alt="Judging screen with the prompt about the magician and the plumber, and two answers for the judge to choose between.">
+        <figcaption>Two answers, one call</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/10-result-three.webp" width="600" height="1231" loading="lazy" alt="Round result: Tiger wins again with &ldquo;accidentally vanished essential thermos&rdquo;, moving to two points on the scoreboard.">
+        <figcaption>First to five takes it</figcaption>
       </figure>
     </div>
   </section>
@@ -418,7 +436,7 @@
 
 <footer>
   <div class="wrap">
-    <p>© 2026 Barnisan LLC. All rights reserved.</p>
+    <p>© 2026 Barnisan. All rights reserved.</p>
     <p><a class="plain" href="/">Barnisan</a> &nbsp;·&nbsp; <a class="plain" href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a class="plain" href="/#contact">Contact</a></p>
   </div>
 </footer>
