@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Governor: Free Republic — Real-time naval strategy — Barnisan</title>
+<meta name="description" content="Governor: Free Republic is a real-time naval strategy game for iPhone and iPad. Found settlements, raise a fleet, and sink the pirates that come for your ports. No ads, no purchases, no internet. In development from Barnisan.">
+<link rel="canonical" href="https://barnisan.com/governor/">
+<meta property="og:title" content="Governor: Free Republic">
+<meta property="og:description" content="A real-time naval strategy game. Found settlements, raise a fleet, and sink the raiders that come for your ports.">
+<meta property="og:url" content="https://barnisan.com/governor/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://barnisan.com/governor/img/og-governor.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#183044">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<style>
+  :root {
+    --parch: #EFE2C1;
+    --parch2: #DCCEAE;
+    --parch3: #CAB898;
+    --navy: #183044;
+    --sea: #1D496B;
+    --ink: #14222E;
+    --body: #3A4A56;
+    --muted: #6B7480;
+    --ox: #6C0914;
+    --gold: #A8761F;
+    --line: #C9BB9B;
+    --serif: Rockwell, "Bookman Old Style", Georgia, "Times New Roman", serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { overflow-x: hidden; }
+  body {
+    background: var(--parch);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .wordmark { font-family: var(--serif); font-weight: 700; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+  .topstripe { height: 4px; background: var(--ox); }
+
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(239, 226, 193, 0.93);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding-block: 13px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .brand img { display: block; width: 32px; height: auto; }
+  .wordmark { font-size: 1.02rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  nav.links { display: flex; gap: 22px; }
+  nav.links a { color: var(--body); text-decoration: none; font-size: 0.86rem; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase; }
+  nav.links a:hover { color: var(--ox); }
+  .menu-toggle { display: none; background: none; cursor: pointer; line-height: 0;
+    border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; color: var(--body); }
+
+  /* ---- hero: the sea ---- */
+  .hero-band { background: linear-gradient(180deg, var(--navy), var(--sea) 70%, #24557A); color: var(--parch); }
+  .hero { padding-block: 74px 66px; text-align: center; }
+  .hero h1 { font-size: clamp(2.1rem, 5.6vw, 3.2rem); line-height: 1.1; margin-bottom: 12px; color: #F6ECD4; }
+  .hero .sub { font-family: var(--serif); font-size: clamp(1.1rem, 2.6vw, 1.4rem); color: var(--gold);
+    margin-bottom: 22px; letter-spacing: 0.01em; }
+  .hero p.lede { font-size: 1.1rem; color: #D8E2EA; max-width: 34em; margin: 0 auto; }
+  .hero .status { margin-top: 24px; display: inline-block; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #F0E3C4;
+    border: 1px solid rgba(240, 227, 196, 0.4); border-radius: 2px; padding: 7px 14px; }
+  .hero .note { margin-top: 16px; font-size: 0.92rem; color: #BFD0DC; }
+  .hero .note a { color: #F0D69A; font-weight: 700; text-decoration: none; }
+  .hero .note a:hover { text-decoration: underline; }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: 0; }
+  .kicker { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ox); margin-bottom: 10px; }
+  section h2 { font-size: clamp(1.35rem, 3vw, 1.75rem); line-height: 1.25; margin-bottom: 16px; max-width: 20em; }
+  section p { color: var(--body); max-width: 42em; }
+  section p + p { margin-top: 14px; }
+
+  .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
+  .step { background: rgba(255,255,255,0.42); border: 1px solid var(--line); border-radius: 4px; padding: 20px; }
+  .step .n { display: inline-block; font-family: var(--serif); font-size: 0.78rem; font-weight: 700;
+    color: #F6ECD4; background: var(--ox); border-radius: 2px; padding: 2px 9px; margin-bottom: 10px; }
+  .step h3 { font-size: 1.02rem; margin-bottom: 6px; letter-spacing: 0.02em; }
+  .step p { font-size: 0.92rem; color: var(--body); line-height: 1.55; }
+
+  /* ---- shots ---- */
+  .shots { display: flex; gap: 16px; overflow-x: auto; padding: 28px 24px 10px;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .shots-hint { font-size: 0.84rem; color: var(--muted); margin-top: 2px; }
+  .shot { flex: 0 0 240px; scroll-snap-align: start; }
+  .shot img { width: 100%; height: auto; display: block; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--navy); }
+  .shot figcaption { font-size: 0.84rem; color: var(--muted); margin-top: 10px; text-align: center; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
+  .stat { background: rgba(255,255,255,0.42); border: 1px solid var(--line); border-radius: 4px;
+    padding: 18px 16px; text-align: center; }
+  .stat .n { font-family: var(--serif); font-size: 1.9rem; color: var(--ox); line-height: 1.1; }
+  .stat .k { font-size: 0.82rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+  ul.plain-list { margin-top: 20px; list-style: none; }
+  ul.plain-list li { position: relative; padding-left: 20px; margin-top: 9px; color: var(--body); font-size: 0.96rem; }
+  ul.plain-list li::before { content: ""; position: absolute; left: 0; top: 0.62em;
+    width: 7px; height: 7px; background: var(--ox); border-radius: 1px; }
+
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .pills span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 2px; border: 1px solid var(--line); color: var(--body);
+    background: rgba(255,255,255,0.5); }
+
+  .cta-box { margin-top: 26px; border: 1px solid var(--line); border-top: 3px solid var(--ox);
+    border-radius: 4px; padding: 24px; display: flex; flex-wrap: wrap; align-items: center;
+    justify-content: space-between; gap: 16px; background: rgba(255,255,255,0.42); }
+  .cta-box .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--ox); }
+  .cta-box .email { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-top: 3px; }
+  a.button { display: inline-block; background: var(--ox); color: #F6ECD4; text-decoration: none;
+    font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 13px 24px; border-radius: 3px; }
+  a.button:hover { background: #4E060E; }
+  a.plain { color: var(--ox); text-decoration: none; font-weight: 700; }
+  a.plain:hover { text-decoration: underline; }
+
+  footer { border-top: 3px solid var(--ox); padding: 28px 0 44px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+  footer p { color: var(--muted); font-size: 0.85rem; }
+
+  @media (max-width: 700px) {
+    .steps, .stats { grid-template-columns: 1fr; }
+    .menu-toggle { display: block; }
+    nav.links { display: none; position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0; padding: 4px 24px 12px;
+      background: var(--parch); border-bottom: 1px solid var(--line); }
+    header[data-nav-open="true"] nav.links { display: flex; }
+    nav.links a { padding: 13px 0; font-size: 0.95rem; border-top: 1px solid var(--line); }
+    .hero { padding-block: 54px 48px; }
+    .shots { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topstripe"></div>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="Barnisan home">
+      <img src="/img/barnisan-mark.webp" width="32" height="25" alt="" decoding="async">
+      <div class="wordmark">Barnisan</div>
+    </a>
+    <nav class="links" id="sitenav" aria-label="Site navigation">
+      <a href="#how">How it plays</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="sitenav" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero-band">
+    <div class="wrap hero">
+      <h1>Governor: Free Republic</h1>
+      <p class="sub">Sink pirates. Found colonies.</p>
+      <p class="lede">One frigate, a charter, and a sea full of pirates. Found settlements, raise a fleet,
+      sink the raiders and bank their plunder — for as long as your term holds.</p>
+      <p class="status">In development</p>
+      <p class="note">For iPhone and iPad. <a href="/#contact">Email us</a> if you&rsquo;d like to hear when there&rsquo;s news.</p>
+    </div>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <p class="kicker">How it plays</p>
+      <h2>You are the Governor. The Republic handed you a charter, one frigate, and a stretch of open water.</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="n">Take the sea</span>
+          <h3>Drag a course, lock on a target</h3>
+          <p>Tap a ship and drag its course. Tap a pirate to lock on. Idle ships engage anything that comes near, so a patrol left in the right place is worth a hundred taps later.</p>
+        </div>
+        <div class="step">
+          <span class="n">Hold the coast</span>
+          <h3>Settle islands that suit the build</h3>
+          <p>Colony ships carry settlers to empty islands. Every island has a character — fertile, forested, pastoral, quarry — and takes only the buildings that suit it.</p>
+        </div>
+        <div class="step">
+          <span class="n">What is out there</span>
+          <h3>Thirteen classes, escalating</h3>
+          <p>Pirates come wave by wave. Five named flagships sail under captains out of the history books, each carrying a bounty worth the risk — and in deep water, a kraken that hunts pirate and Republic alike.</p>
+        </div>
+        <div class="step">
+          <span class="n">Letters of Marque</span>
+          <h3>Draft your term before you sail</h3>
+          <p>Boons cost points and burdens pay for them. Take Veteran Crews and Long Guns, and answer for it with Crown Tariffs and Wanted Posters. Every run is a different bargain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="look">
+    <div class="wrap">
+      <p class="kicker">A look at it</p>
+      <h2>Every ship, island and icon is pixel art, generated on the device as the game runs.</h2>
+      <p class="shots-hint">Scroll sideways for more.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot">
+        <img src="img/01-letters-of-marque.webp" width="600" height="1231" loading="lazy" alt="The Letters of Marque screen: a list of boons such as Royal Subsidy, Long Guns and Veteran Crews with point costs, and burdens such as Wanted Posters and Crown Tariffs that pay for them, above Sail Without Charter and Set Sail buttons.">
+        <figcaption>Draft your term</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/02-captured-stronghold.webp" width="600" height="1231" loading="lazy" alt="A captured pirate stronghold on a small island, with a panel showing port health, the next pirate timer, and the captured infrastructure: fortifications, dairy, school and blacksmith.">
+        <figcaption>Take a stronghold</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/03-kraken-and-boss.webp" width="600" height="1231" loading="lazy" alt="Open water with a Brigantine engaging, and a panel for the flagship Queen Anne's Revenge under Captain Edmund of the Reefs, bombarding a settlement.">
+        <figcaption>A flagship comes for the port</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/04-settlement-under-attack.webp" width="600" height="1231" loading="lazy" alt="A settlement panel showing port health dropping, population, income per minute and idle shipyard slots, with repair and transport options while a flagship approaches.">
+        <figcaption>Repair, or lose the port</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/05-build-queue-and-shipyard.webp" width="600" height="1231" loading="lazy" alt="A settlement at full port health with a Republic Frigate on garrison patrol, a Republic Leviathan and fortifications building in the yard, and a row of purchasable hulls along the bottom.">
+        <figcaption>Raise a fleet</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="inside">
+    <div class="wrap">
+      <p class="kicker">What&rsquo;s inside</p>
+      <div class="stats">
+        <div class="stat"><div class="n">15</div><div class="k">Republic hulls, schooner to Leviathan</div></div>
+        <div class="stat"><div class="n">13</div><div class="k">classes of pirate, escalating wave by wave</div></div>
+        <div class="stat"><div class="n">5</div><div class="k">named flagships, and one kraken</div></div>
+      </div>
+      <ul class="plain-list">
+        <li>One player, on your device. No internet connection needed, ever.</li>
+        <li>Threat climbs with your treasury, your fleet and the clock. Ports are struck, captured, and taken back again.</li>
+        <li>Islands generate fresh every term, so no two charters look alike.</li>
+        <li>Autosaves every twenty seconds — put it down mid-broadside.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="drawn">
+    <div class="wrap">
+      <p class="kicker">Drawn in code</p>
+      <h2>No art files. No sound files. The game draws and plays itself.</h2>
+      <p>Every ship, island, building and icon is pixel art generated on the device at runtime — down to the
+      app icon. So is the audio: the cannon fire, the bosun&rsquo;s whistle, the sea and the shanty are
+      synthesised as the game runs, with no sound files shipped at all.</p>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="wrap">
+      <p class="kicker">Privacy</p>
+      <h2>It doesn&rsquo;t collect anything, because there&rsquo;s nowhere for it to send anything.</h2>
+      <div class="pills">
+        <span>No accounts</span><span>No internet</span><span>No ads</span>
+        <span>No purchases</span><span>No tracking</span><span>No data collected</span>
+      </div>
+      <p style="margin-top:18px;">Governor has no networking code in it at all — no analytics, no crash reporting,
+      no advertising, no third-party SDKs. Read the full <a class="plain" href="/privacy/">privacy policy</a>.</p>
+    </div>
+  </section>
+
+  <section id="more">
+    <div class="wrap">
+      <p class="kicker">Good for</p>
+      <h2>Anyone who has ever looked at a map and wanted to put a fort on it.</h2>
+      <p>The water does not care that you were appointed.</p>
+      <div class="cta-box">
+        <div>
+          <div class="label">Questions, or want to hear when there&rsquo;s news?</div>
+          <div class="email">info@barnisan.com</div>
+        </div>
+        <a class="button" href="mailto:info@barnisan.com?subject=Governor">Send an email</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Barnisan. All rights reserved.</p>
+    <p><a class="plain" href="/">Barnisan</a> &nbsp;·&nbsp; <a class="plain" href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a class="plain" href="/#contact">Contact</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var header = document.querySelector('header');
+  var toggle = document.querySelector('.menu-toggle');
+  if (!header || !toggle) return;
+  function set(open) {
+    header.setAttribute('data-nav-open', open ? 'true' : 'false');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  toggle.addEventListener('click', function () {
+    set(header.getAttribute('data-nav-open') !== 'true');
+  });
+  header.querySelectorAll('nav.links a').forEach(function (a) {
+    a.addEventListener('click', function () { set(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && header.getAttribute('data-nav-open') === 'true') {
+      set(false); toggle.focus();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
