@@ -59,8 +59,32 @@
   nav.links a { color: var(--body); text-decoration: none; font-size: 0.86rem; font-weight: 600;
     letter-spacing: 0.04em; text-transform: uppercase; }
   nav.links a:hover { color: var(--ox); }
-  .menu-toggle { display: none; background: none; cursor: pointer; line-height: 0;
-    border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; color: var(--body); }
+  .menu-toggle { display: none; background: var(--parch2); cursor: pointer; line-height: 0;
+    border: 0; border-radius: 0; padding: 8px 10px; color: var(--ink);
+    box-shadow: 0 -3px 0 0 var(--ink), 0 3px 0 0 var(--ink), -3px 0 0 0 var(--ink), 3px 0 0 0 var(--ink); }
+
+
+  /* ---- pixel-art chrome: hard edges, notched corners, no blur ---- */
+  img.px { image-rendering: pixelated; image-rendering: -moz-crisp-edges; image-rendering: crisp-edges; }
+
+  /* a panel with cut corners, the way the game draws them */
+  .panel {
+    background: var(--parch2);
+    box-shadow:
+      0 -4px 0 0 var(--ink), 0 4px 0 0 var(--ink),
+      -4px 0 0 0 var(--ink), 4px 0 0 0 var(--ink),
+      8px 8px 0 0 rgba(20, 34, 46, 0.18);
+    border-radius: 0 !important;
+  }
+
+  /* blocky wave along the bottom of the sea band */
+  .wave {
+    height: 16px;
+    background:
+      linear-gradient(90deg, var(--parch) 25%, transparent 25%) 0 0 / 32px 8px repeat-x,
+      linear-gradient(90deg, transparent 50%, var(--parch) 50%) 16px 8px / 32px 8px repeat-x,
+      var(--sea);
+  }
 
   /* ---- hero: the sea ---- */
   .hero-band { background: linear-gradient(180deg, var(--navy), var(--sea) 70%, #24557A); color: var(--parch); }
@@ -69,9 +93,10 @@
   .hero .sub { font-family: var(--serif); font-size: clamp(1.1rem, 2.6vw, 1.4rem); color: var(--gold);
     margin-bottom: 22px; letter-spacing: 0.01em; }
   .hero p.lede { font-size: 1.1rem; color: #D8E2EA; max-width: 34em; margin: 0 auto; }
-  .hero .status { margin-top: 24px; display: inline-block; font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase; color: #F0E3C4;
-    border: 1px solid rgba(240, 227, 196, 0.4); border-radius: 2px; padding: 7px 14px; }
+  .hero .status { margin-top: 26px; display: inline-block; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #F0E3C4; background: rgba(20,34,46,0.35);
+    border-radius: 0; padding: 8px 15px;
+    box-shadow: 0 -3px 0 0 #F0E3C4, 0 3px 0 0 #F0E3C4, -3px 0 0 0 #F0E3C4, 3px 0 0 0 #F0E3C4; }
   .hero .note { margin-top: 16px; font-size: 0.92rem; color: #BFD0DC; }
   .hero .note a { color: #F0D69A; font-weight: 700; text-decoration: none; }
   .hero .note a:hover { text-decoration: underline; }
@@ -84,48 +109,53 @@
   section p { color: var(--body); max-width: 42em; }
   section p + p { margin-top: 14px; }
 
-  .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
-  .step { background: rgba(255,255,255,0.42); border: 1px solid var(--line); border-radius: 4px; padding: 20px; }
+  .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 32px; }
+  .step { background: var(--parch2); padding: 22px; border-radius: 0;
+    box-shadow: 0 -4px 0 0 var(--ink), 0 4px 0 0 var(--ink), -4px 0 0 0 var(--ink), 4px 0 0 0 var(--ink), 8px 8px 0 0 rgba(20,34,46,0.16); }
   .step .n { display: inline-block; font-family: var(--serif); font-size: 0.78rem; font-weight: 700;
-    color: #F6ECD4; background: var(--ox); border-radius: 2px; padding: 2px 9px; margin-bottom: 10px; }
+    color: #F6ECD4; background: var(--ox); border-radius: 0; padding: 3px 10px; margin-bottom: 12px; }
   .step h3 { font-size: 1.02rem; margin-bottom: 6px; letter-spacing: 0.02em; }
   .step p { font-size: 0.92rem; color: var(--body); line-height: 1.55; }
 
   /* ---- shots ---- */
-  .shots { display: flex; gap: 16px; overflow-x: auto; padding: 28px 24px 10px;
+  .shots { display: flex; gap: 22px; overflow-x: auto; padding: 28px 24px 10px;
     scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
   .shots-hint { font-size: 0.84rem; color: var(--muted); margin-top: 2px; }
   .shot { flex: 0 0 240px; scroll-snap-align: start; }
-  .shot img { width: 100%; height: auto; display: block; border-radius: 10px;
-    border: 1px solid var(--line); background: var(--navy); }
+  .shot img { width: 100%; height: auto; display: block; border-radius: 0;
+    background: var(--navy);
+    box-shadow: 0 -3px 0 0 var(--ink), 0 3px 0 0 var(--ink), -3px 0 0 0 var(--ink), 3px 0 0 0 var(--ink), 6px 6px 0 0 rgba(20,34,46,0.2); }
   .shot figcaption { font-size: 0.84rem; color: var(--muted); margin-top: 10px; text-align: center; }
 
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
-  .stat { background: rgba(255,255,255,0.42); border: 1px solid var(--line); border-radius: 4px;
-    padding: 18px 16px; text-align: center; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 30px; }
+  .stat { background: var(--parch2); border-radius: 0; padding: 20px 16px; text-align: center;
+    box-shadow: 0 -4px 0 0 var(--ink), 0 4px 0 0 var(--ink), -4px 0 0 0 var(--ink), 4px 0 0 0 var(--ink), 8px 8px 0 0 rgba(20,34,46,0.16); }
   .stat .n { font-family: var(--serif); font-size: 1.9rem; color: var(--ox); line-height: 1.1; }
   .stat .k { font-size: 0.82rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
 
   ul.plain-list { margin-top: 20px; list-style: none; }
   ul.plain-list li { position: relative; padding-left: 20px; margin-top: 9px; color: var(--body); font-size: 0.96rem; }
-  ul.plain-list li::before { content: ""; position: absolute; left: 0; top: 0.62em;
-    width: 7px; height: 7px; background: var(--ox); border-radius: 1px; }
+  ul.plain-list li::before { content: ""; position: absolute; left: 0; top: 0.6em;
+    width: 8px; height: 8px; background: var(--ox); border-radius: 0;
+    box-shadow: 0 -2px 0 0 var(--ox), 0 2px 0 0 var(--ox), -2px 0 0 0 var(--ox), 2px 0 0 0 var(--ox); }
 
   .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .pills span { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-    padding: 6px 12px; border-radius: 2px; border: 1px solid var(--line); color: var(--body);
-    background: rgba(255,255,255,0.5); }
+    padding: 7px 12px; border-radius: 0; color: var(--ink); background: var(--parch2);
+    box-shadow: 0 -3px 0 0 var(--ink), 0 3px 0 0 var(--ink), -3px 0 0 0 var(--ink), 3px 0 0 0 var(--ink); }
 
-  .cta-box { margin-top: 26px; border: 1px solid var(--line); border-top: 3px solid var(--ox);
-    border-radius: 4px; padding: 24px; display: flex; flex-wrap: wrap; align-items: center;
-    justify-content: space-between; gap: 16px; background: rgba(255,255,255,0.42); }
+  .cta-box { margin-top: 30px; border-radius: 0; padding: 26px; display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: space-between; gap: 16px; background: var(--parch2);
+    box-shadow: 0 -4px 0 0 var(--ox), 0 4px 0 0 var(--ox), -4px 0 0 0 var(--ox), 4px 0 0 0 var(--ox), 8px 8px 0 0 rgba(108,9,20,0.18); }
   .cta-box .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.13em;
     text-transform: uppercase; color: var(--ox); }
   .cta-box .email { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-top: 3px; }
   a.button { display: inline-block; background: var(--ox); color: #F6ECD4; text-decoration: none;
     font-weight: 700; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 13px 24px; border-radius: 3px; }
+    padding: 14px 24px; border-radius: 0; box-shadow: 5px 5px 0 0 rgba(20,34,46,0.35);
+    transform: translate(0,0); transition: transform .06s steps(1), box-shadow .06s steps(1); }
   a.button:hover { background: #4E060E; }
+  a.button:active { transform: translate(3px,3px); box-shadow: 2px 2px 0 0 rgba(20,34,46,0.35); }
   a.plain { color: var(--ox); text-decoration: none; font-weight: 700; }
   a.plain:hover { text-decoration: underline; }
 
@@ -177,6 +207,7 @@
       <p class="note">For iPhone and iPad. <a href="/#contact">Email us</a> if you&rsquo;d like to hear when there&rsquo;s news.</p>
     </div>
   </div>
+  <div class="wave" aria-hidden="true"></div>
 
   <section id="how">
     <div class="wrap">
@@ -245,6 +276,7 @@
         <div class="stat"><div class="n">13</div><div class="k">classes of pirate, escalating wave by wave</div></div>
         <div class="stat"><div class="n">5</div><div class="k">named flagships, and one kraken</div></div>
       </div>
+      <img class="px" src="img/sprite-hulls.png" width="1160" height="150" alt="A row of pixel-art Republic hulls with their prices: 24, 28, 50, 60, 95, 140 and 170 gold." loading="lazy" decoding="async" style="width:100%; max-width:660px; height:auto; margin-top:32px; display:block; box-shadow: 0 -3px 0 0 var(--ink), 0 3px 0 0 var(--ink), -3px 0 0 0 var(--ink), 3px 0 0 0 var(--ink), 6px 6px 0 0 rgba(20,34,46,0.18);">
       <ul class="plain-list">
         <li>One player, on your device. No internet connection needed, ever.</li>
         <li>Threat climbs with your treasury, your fleet and the clock. Ports are struck, captured, and taken back again.</li>
@@ -258,6 +290,10 @@
     <div class="wrap">
       <p class="kicker">Drawn in code</p>
       <h2>No art files. No sound files. The game draws and plays itself.</h2>
+      <div style="display:flex; align-items:center; gap:26px; flex-wrap:wrap; margin:22px 0 6px;">
+        <img class="px" src="img/sprite-settlement.png" width="620" height="250" alt="A pixel-art settlement: red-roofed houses and a keep on green grass, ringed by sand and sea." loading="lazy" decoding="async" style="width:280px; height:auto; display:block;">
+        <img class="px" src="img/sprite-ships.png" width="230" height="300" alt="A pixel-art Republic ship under fire and a green pirate vessel on open water." loading="lazy" decoding="async" style="width:104px; height:auto; display:block;">
+      </div>
       <p>Every ship, island, building and icon is pixel art generated on the device at runtime — down to the
       app icon. So is the audio: the cannon fire, the bosun&rsquo;s whistle, the sea and the shanty are
       synthesised as the game runs, with no sound files shipped at all.</p>

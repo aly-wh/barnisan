@@ -87,12 +87,15 @@
 
   .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 30px; }
   .grid.one { grid-template-columns: 1fr; }
+  .grid > * { min-width: 0; }
   .card {
     position: relative; background: var(--card); border: 1px solid var(--line);
-    border-radius: 4px; padding: 26px 22px 24px; overflow: hidden;
+    border-radius: 4px; padding: 0; overflow: hidden;
     transition: border-color .18s ease, box-shadow .18s ease;
   }
-  .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--ox); }
+  .card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--ox); z-index: 1; }
+  .card-art { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--line); }
+  .card-body { padding: 22px 22px 24px; }
   .card:hover { border-color: #CFC7C1; box-shadow: 0 12px 28px -22px rgba(20, 16, 15, 0.5); }
   .card h3 { font-size: 1.2rem; margin-bottom: 8px; letter-spacing: 0.02em; }
   .card p { font-size: 0.94rem; color: var(--muted); line-height: 1.6; }
@@ -186,16 +189,22 @@
       <p>Everything is designed and developed in-house, from first sketch to release.</p>
       <div class="grid">
         <div class="card">
+          <img class="card-art" src="/img/card-governor.png" width="620" height="250" alt="Pixel-art settlement on an island: three red-roofed houses, a keep and a blue warehouse on green grass, ringed by pale sand and blue sea." loading="lazy" decoding="async">
+          <div class="card-body">
           <h3>Governor: Free Republic</h3>
           <p>A real-time naval strategy game. Found settlements on the islands, raise a fleet in their shipyards, and sink the raiders that come for your ports — for as long as your term holds.</p>
           <p class="meta"><span class="plat">iPhone &amp; iPad</span><span class="stat">In development</span></p>
           <p class="more"><a class="plain" href="/governor/">See more &rarr;</a></p>
+          </div>
         </div>
         <div class="card">
+          <img class="card-art" src="/img/card-yapoff.png" width="620" height="250" alt="Word chips from YapOff reading my, emotionally, suspicious, vegetables, sorry, this, spontaneous, emergency — bright pink and orange on a dark purple background." loading="lazy" decoding="async">
+          <div class="card-body">
           <h3>YapOff</h3>
           <p>A pass-the-phone party word game. Two to eight players, one device, no internet — built to be played round a table.</p>
           <p class="meta"><span class="plat">iPhone</span><span class="stat">2–8 players</span></p>
           <p class="more"><a class="plain" href="/yapoff/">See more &rarr;</a></p>
+          </div>
         </div>
       </div>
       <p style="margin-top: 28px;">Questions, or want to hear when there’s news? <a class="plain" href="#contact">Get in touch</a>.</p>
