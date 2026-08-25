@@ -105,7 +105,7 @@
     padding: 4px 10px; border-radius: 2px; border: 1px solid var(--line); color: var(--muted);
   }
   .card p.meta .stat { color: var(--ox); border-color: rgba(108, 9, 20, 0.3); }
-  .card p.more { margin-top: 14px; font-size: 0.9rem; }
+  .card p.more { margin-top: 16px; font-size: 0.9rem; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
 
   .contact-box {
     margin-top: 28px; border-radius: 4px; padding: 26px;
@@ -123,6 +123,12 @@
     transition: background .15s ease;
   }
   a.button:hover { background: var(--ox-deep); }
+  a.button-sm {
+    display: inline-block; background: var(--ox); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 0.74rem; letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 10px 15px; border-radius: 3px; transition: background .15s ease;
+  }
+  a.button-sm:hover { background: var(--ox-deep); }
   a.plain { color: var(--ox); text-decoration: none; font-weight: 700; }
   a.plain:hover { text-decoration: underline; }
 
@@ -203,7 +209,7 @@
           <h3>YapOff</h3>
           <p>A pass-the-phone party word game. Two to eight players, one device, no internet — built to be played round a table.</p>
           <p class="meta"><span class="plat">iPhone</span><span class="stat">On the App Store</span></p>
-          <p class="more"><a class="plain" href="/yapoff/">See more &rarr;</a></p>
+          <p class="more"><a class="button-sm" href="https://apps.apple.com/app/id6803661002">Get it on the App Store</a><a class="plain" href="/yapoff/">See more &rarr;</a></p>
           </div>
         </div>
       </div>
