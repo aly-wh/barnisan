@@ -109,6 +109,10 @@
   .step h3 { font-family: var(--mono); font-size: 1.02rem; font-weight: 700; margin-bottom: 6px; }
   .step p { font-size: 0.94rem; line-height: 1.55; max-width: none; }
 
+  .step .show { display: flex; gap: 8px; align-items: center; margin-top: 14px; }
+  .step .show img { width: 76px; height: 76px; object-fit: contain; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 4px; }
+  .step .show img.wide { width: 100%; height: 150px; object-fit: cover; object-position: center top; padding: 0; }
+
   /* ---- log card ---- */
   .log {
     margin-top: 34px; border: 1px solid var(--line); border-radius: 8px; padding: 26px 24px;
@@ -232,21 +236,25 @@
           <span class="verb">PLANT</span>
           <h3>Put a seedling in the ground</h3>
           <p>The pack has seeds and the ground is waiting. Once a tree takes, it drops pods of its own, and the grove starts spreading without you.</p>
+          <div class="show"><img src="img/guide/oak.webp" width="76" height="76" loading="lazy" alt="oak"><img src="img/guide/birch.webp" width="76" height="76" loading="lazy" alt="birch"><img src="img/guide/sunbloom.webp" width="76" height="76" loading="lazy" alt="sunbloom"><img src="img/guide/blossom.webp" width="76" height="76" loading="lazy" alt="blossom"></div>
         </div>
         <div class="step">
           <span class="verb">MELT</span>
           <h3>Dig a hollow, thaw the ice</h3>
           <p>Roots are thirsty things. Dig a bowl, melt dirty ice into it, and a puddle becomes a pool becomes a lake.</p>
+          <div class="show"><img class="wide" src="img/verb-melt.webp" width="900" height="674" loading="lazy" alt="The Pebble seen from orbit with several dark blue lakes on its green surface."></div>
         </div>
         <div class="step">
           <span class="verb">ZAP</span>
           <h3>Guard what you grew</h3>
           <p>Something is always chewing at the roots. Borers freeze solid when zapped. Critters that raid the pods leave a pelt behind.</p>
+          <div class="show"><img src="img/guide/borer.webp" width="76" height="76" loading="lazy" alt="borer"><img src="img/guide/pip.webp" width="76" height="76" loading="lazy" alt="pip"><img src="img/guide/hoarder.webp" width="76" height="76" loading="lazy" alt="hoarder"><img src="img/guide/pelt.webp" width="76" height="76" loading="lazy" alt="pelt"></div>
         </div>
         <div class="step">
           <span class="verb">BUILD</span>
           <h3>Raise a camp from the lander</h3>
           <p>A beacon against the dark. A tent by the grove. A condenser, a habitat, a radio tower. Then send a signal and see what answers.</p>
+          <div class="show"><img class="wide" src="img/verb-build.webp" width="900" height="674" loading="lazy" alt="The blueprints panel at the lander: beacon, hide tent, condenser, habitat, fish trap, greenhouse, lighthouse, aviary and more, each with its price."></div>
         </div>
       </div>
       <div class="log">
