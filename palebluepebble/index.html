@@ -130,6 +130,39 @@
   .bar.water i.on { background: var(--blue); } .bar.flora i.on { background: var(--leaf); } .bar.air i.on { background: #B8A6F5; } .bar.cat i.on { background: var(--amber); }
   .log p.fine { color: var(--dim); font-size: 0.82rem; margin-top: 18px; max-width: 44em; }
 
+  /* ---- ladder / seasons / crew / buildings / wardrobe ---- */
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+  .pair figure img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); }
+  .pair figcaption { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; color: var(--dim); margin-top: 9px; }
+  .ladder { list-style: none; margin-top: 28px; display: grid; gap: 10px; }
+  .ladder li { display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: baseline; padding: 14px 16px; background: var(--void2); border: 1px solid var(--line); border-radius: 8px; }
+  .ladder .name { font-family: var(--mono); font-weight: 700; font-size: 0.9rem; color: var(--leaf); letter-spacing: 0.04em; }
+  .ladder q { display: block; color: var(--ink); font-style: italic; quotes: "\201C" "\201D"; }
+  .ladder .brings { display: block; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-top: 6px; }
+  .air { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .air span { padding: 7px 12px; border: 1px solid var(--line); border-radius: 4px; color: var(--dim); }
+  .air span.on { color: #B8A6F5; border-color: rgba(184,166,245,0.5); }
+  .seasons { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 28px; }
+  .season { background: var(--void2); border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+  .season h3 { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.24em; text-transform: uppercase; margin-bottom: 8px; }
+  .season.spring h3 { color: #F5A3C7; } .season.summer h3 { color: var(--amber); } .season.autumn h3 { color: #F0946B; } .season.winter h3 { color: var(--blue); }
+  .season p { font-size: 0.94rem; line-height: 1.55; max-width: none; }
+  .crew { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 28px; }
+  .mate { display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: start; background: var(--void2); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  .mate img { width: 64px; height: 64px; object-fit: contain; background: var(--panel); border-radius: 8px; border: 1px solid var(--line); }
+  .mate .who { font-family: var(--mono); font-weight: 700; font-size: 0.95rem; }
+  .mate .sig { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-left: 8px; }
+  .mate p { font-size: 0.92rem; line-height: 1.5; margin-top: 4px; max-width: none; }
+  .mate q { color: var(--amber); font-style: italic; quotes: "\201C" "\201D"; }
+  .bgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 24px; }
+  .bgrid div { background: var(--void2); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+  .bgrid b { display: block; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; }
+  .bgrid span { font-size: 0.86rem; color: var(--dim); line-height: 1.45; }
+  .wear { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .wear span { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em; padding: 7px 11px; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); background: var(--void2); }
+  .quote { margin-top: 22px; padding: 18px 22px; border-left: 3px solid var(--amber); background: var(--void2); font-family: var(--mono); color: #C9D2E3; font-size: 0.95rem; max-width: 40em; }
+  @media (max-width: 720px) { .pair, .seasons, .crew { grid-template-columns: 1fr; } .bgrid { grid-template-columns: 1fr 1fr; } .ladder li { grid-template-columns: 1fr; gap: 4px; } }
+
   /* ---- shots ---- */
   .shots { display: flex; gap: 16px; overflow-x: auto; margin-top: 30px; padding: 4px 24px 18px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
   .shot { flex: none; width: min(78vw, 560px); scroll-snap-align: center; }
@@ -202,8 +235,9 @@
     </a>
     <nav class="links" id="sitenav" aria-label="Site navigation">
       <a href="#mission">The mission</a>
-      <a href="#look">A look at it</a>
+      <a href="#grows">The world</a>
       <a href="#guide">Field guide</a>
+      <a href="#build">Building</a>
       <a href="/privacy/">Privacy</a>
       <a href="/#contact">Contact</a>
     </nav>
@@ -276,8 +310,40 @@
     <div class="wrap">
       <h2>It grows</h2>
       <p class="big">Every living tree makes the world bigger. Keep the gauges fed and the helmet comes off.</p>
-      <p style="margin-top:18px;">There is no finish line. The pebble swells as you plant, melt and build, and the further out the horizon goes, the more it asks of you. Seasons turn and bring their own weather. Ice caps form at the poles, and things start living on them: penguins, hares, seals, a fox. Let the gauges slip and the air thins, the helmet goes back on, and the grove starts to die back.</p>
-      <p>A rover for when the walk gets long. Dyes for the cat. A workbench, an observatory, a polar station. And a launch pad that takes ten loads of fuel, for whenever you are ready.</p>
+      <p style="margin-top:18px;">Growth is continuous. Every tree, every melted block, every standing building and every fed crewmate adds to what the Pebble wants to be. Each time it crosses a line, everything stops for a card and the camera climbs from the cat's shoulder out to orbit and back. Then the gauges fall, because a bigger body asks for more.</p>
+      <div class="pair">
+        <figure><img src="img/minute-one.webp" width="1400" height="689" loading="lazy" alt="Minute one: a bare tan rock against a purple nebula, the cat beside the lander, three seeds and two blocks of ice in the pack."><figcaption>Minute one. A rock you can walk round in under a minute.</figcaption></figure>
+        <figure><img src="img/orbit-blue.webp" width="1400" height="689" loading="lazy" alt="The whole Pebble, green and blue under white cloud, hanging small in a violet nebula. The cat is a speck on its lit horizon."><figcaption>The same rock, pinched all the way out to orbit.</figcaption></figure>
+      </div>
+      <ol class="ladder">
+        <li><span class="name">Small world</span><span><q>The horizon is farther than it was. Your boots are the same size.</q><span class="brings">Meteors begin</span></span></li>
+        <li><span class="name">Young planet</span><span><q>Weather has seasons now. Somewhere it is raining on nobody.</q><span class="brings">Seasons arrive, and so does the decline</span></span></li>
+        <li><span class="name">Home</span><span><q>You stopped counting trees. The rock you landed on is a planet with a name, and the name is yours.</q><span class="brings">Lighthouse, radio tower, the rover</span></span></li>
+        <li><span class="name">Wide world</span><span><q>The lander is a speck from the far ridge. You could walk for a day and not come back round.</q><span class="brings">Aviary, grooming parlour</span></span></li>
+        <li><span class="name">Blue Pebble</span><span><q>From orbit it would be blue now. Nobody is in orbit. That can change.</q><span class="brings">Ice caps, auroras, four polar animals, the parka</span></span></li>
+        <li><span class="name">World</span><span><q>It has a horizon. Things live past it that you have never met.</q><span class="brings">And it keeps going. The ladder never stops</span></span></li>
+      </ol>
+      <p style="margin-top:28px;">Separately, the air thickens. Five stages gate the early buildings and the suit, and the quietest one is the best: at <strong>Living world</strong> the helmet comes off. Let the gauges slip and it goes back on.</p>
+      <div class="air"><span>Barren rock</span><span>First thaw</span><span>Green shoots</span><span class="on">Living world</span><span>Flourishing</span></div>
+    </div>
+  </section>
+
+  <section id="seasons">
+    <div class="wrap">
+      <h2>The seasons</h2>
+      <p class="big">Twenty minutes to a year. What you plant takes the season's shape, and each season breaks something different.</p>
+      <div class="seasons">
+        <div class="season spring"><h3>Spring</h3><p>Blossom, at any height. The ice lets go and the polar animals head home. Paws are quicker in the warm, and once in a while a blossom drops a dye instead of a pod.</p></div>
+        <div class="season summer"><h3>Summer</h3><p>Birch up high, broadleaf in the middle, palms on the shore. The pools shrink three times as fast. Sunblooms sow themselves beside the grove: nobody planted them, everybody looks at them, and they drink like three trees each.</p></div>
+        <div class="season autumn"><h3>Autumn</h3><p>Maple up high, oak below. One pod in four turns into something else. Half of all autumns bring a storm: ten seconds of rain, then the flood, then a rainbow for exactly as long as it takes to look at it.</p></div>
+        <div class="season winter"><h3>Winter</h3><p>Pine and evergreen. Snow settles from the peaks down until every pool freezes over. Walk on the ice, or skate it. The cold takes the oldest ordinary tree now and then. The polar animals come down off the caps, carrying double.</p></div>
+      </div>
+      <div class="pair">
+        <figure><img src="img/winter.webp" width="1200" height="590" loading="lazy" alt="A green hillside under falling snow, the cat standing on the ridge, the sky washed pale."><figcaption>Winter, settling from the peaks down.</figcaption></figure>
+        <figure><img src="img/after-rain.webp" width="1100" height="660" loading="lazy" alt="The cat facing the camera in her green suit and glass helmet, a rainbow standing over the rock behind her."><figcaption>After the storm. The rainbow lasts twelve seconds.</figcaption></figure>
+      </div>
+      <p style="margin-top:28px;">The Pebble pushes back. Water evaporates: a full gauge drains in minutes if you melt nothing, faster in summer, not at all under winter ice. Meteors fall with four seconds of warning and take a tree, a pool, or a bite out of the air. Below a third of a gauge the trees wilt one at a time, the helmet goes back on, and the animals lie down and leave what they were carrying. Lose everything and mission control drops a resupply pod beside the lander. Nothing ends.</p>
+      <p>Against all that you carry a small kit: a rain flute that calls a shower down on a pool, sky balm for a torn atmosphere, storm pegs for a tree you love, flares that turn a meteor away. None of it makes anything safe. It pushes back, and the world carries on.</p>
     </div>
   </section>
 
@@ -326,9 +392,9 @@
     <div class="wrap">
       <h2>What's inside</h2>
       <div class="stats">
-        <div class="stat"><div class="n">1</div><div class="k">cat, in a spacesuit, with a pack of seeds</div></div>
-        <div class="stat"><div class="n">4</div><div class="k">seasons, each with its own weather</div></div>
-        <div class="stat"><div class="n">&infin;</div><div class="k">growth. The pebble has no top size</div></div>
+        <div class="stat"><div class="n">14</div><div class="k">plants on the surface, chosen by season and height</div></div>
+        <div class="stat"><div class="n">19</div><div class="k">kinds of living thing, none of them decorative</div></div>
+        <div class="stat"><div class="n">27</div><div class="k">buildings, every one a cat object</div></div>
       </div>
       <ul class="plain">
         <li>Built on licensed art we picked by hand, rendered in our own engine.</li>
@@ -388,6 +454,63 @@
       </div>
     </div>
   </section>
+  <section id="crew">
+    <div class="wrap">
+      <h2>The crew</h2>
+      <p class="big">Raise the radio tower and send a signal. Things with opinions answer it.</p>
+      <div class="crew">
+        <div class="mate"><img src="img/guide/pelt.webp" width="64" height="64" loading="lazy" alt="A pelt"><div><span class="who">The Goose</span><span class="sig">Third signal</span><p>Charges any critter that comes near your pods and runs it off. A mobile tent. Also walks away with the nearest thing on the ground about once a minute. Zap it and it gives the thing back. <q>You silly goose, you!</q></p></div></div>
+        <div class="mate"><img src="img/guide/fish.webp" width="64" height="64" loading="lazy" alt="A fish"><div><span class="who">Pickle</span><span class="sig">Sixth signal</span><p>A small tabby. Finds a stray seed pod and plants it, one a minute. Needs a fish a day, and she means it. <q>Found one. Planting it. Do not watch me.</q></p></div></div>
+        <div class="mate"><img src="img/guide/ice.webp" width="64" height="64" loading="lazy" alt="A block of ice"><div><span class="who">Mop</span><span class="sig">Tenth signal</span><p>A grey long-hair. Carries ice to the nearest pool and pours it in. Hates the goose, and hisses at it from a safe distance. Needs a parka in the den or she sits the winter out.</p></div></div>
+        <div class="mate"><img src="img/guide/oak.webp" width="64" height="64" loading="lazy" alt="An oak"><div><span class="who">Birch</span><span class="sig">Fifteenth signal</span><p>A lanky white. Mends the nearest chewed tree and deals with any borer that gets close. Will not walk on ice. Needs a tent nearby or he wanders off. <q>This tree has been chewed. I have opinions about borers.</q></p></div></div>
+      </div>
+      <div class="pair">
+        <figure><img src="img/crew.webp" width="1400" height="689" loading="lazy" alt="The cat in green beside the lander with a grey cat standing nearby and a tabby further off on the grass."><figcaption>Mop and Pickle, on the ground at Home.</figcaption></figure>
+        <figure><img src="img/06-goose.webp" width="1400" height="644" loading="lazy" alt="Field notes reading: get back what the goose took."><figcaption>Something answered the signal. It appears to think it lives here now.</figcaption></figure>
+      </div>
+      <p style="margin-top:22px;">They are peers, not pets. Once they arrive, part of the job is keeping a crew fed, and each fed crewmate counts toward the world's growth the same way a building does. Everything on the Pebble has a voice, too: the critters squeak, the borers burble, the penguins peep, the seals arf. One call each, so a crowd never becomes a chorus.</p>
+    </div>
+  </section>
+
+  <section id="build">
+    <div class="wrap">
+      <h2>Building</h2>
+      <p class="big">Twenty-seven buildings, and every one of them is a cat object.</p>
+      <p style="margin-top:18px;">Blueprints are taken at the lander and carried to where they will stand. Nothing on the Pebble is a generic sci-fi prop. The beacon is a collar bell on a post. The tent is a wicker cat bed with an eared hood. The condenser is a drinking fountain, the habitat a cat carrier with a barred door, the fish trap a goldfish bowl on stones. The greenhouse grows cat grass. The lighthouse is a scratching post swinging a laser pointer. The aviary is Cat TV. The parlour is a giant brush with a mirror, the observatory a cat's-eye dome, the polar station an igloo cat house with ears. The launch pad wears a painted paw, the orchard keeps a scare-cat, and the windmill spins four striped tails.</p>
+      <div class="bgrid">
+        <div><b>Beacon</b><span>A lamp for the night side. Borers keep off, meteors turn away.</span></div>
+        <div><b>Hide tent</b><span>Critters leave the pods alone nearby.</span></div>
+        <div><b>Condenser</b><span>A block of ice out of the air, every minute.</span></div>
+        <div><b>Greenhouse</b><span>A seed at a time, in any weather.</span></div>
+        <div><b>Habitat</b><span>Trees nearby drop pods twice as often.</span></div>
+        <div><b>Fish trap</b><span>Goes in the water. Fish come out.</span></div>
+        <div><b>Lighthouse</b><span>Keeps the nippers off the shore.</span></div>
+        <div><b>Radio tower</b><span>Call into the dark. It is counted.</span></div>
+        <div><b>Aviary</b><span>Birds settle, and each one counts as growth.</span></div>
+        <div><b>Grooming parlour</b><span>The salon. The cat's own colours.</span></div>
+        <div><b>Observatory</b><span>A sky forecast: next aurora, next meteor.</span></div>
+        <div><b>Polar station</b><span>The animals gather round it. Rest there.</span></div>
+        <div><b>Orchard</b><span>Seeds by the handful, and it counts as a grove.</span></div>
+        <div><b>Windmill</b><span>Everything nearby runs twice as fast.</span></div>
+        <div><b>Launch pad</b><span>Ten loads of fuel. Then a button that says LAUNCH.</span></div>
+      </div>
+      <p style="margin-top:22px;">Every building has a Mk II, and most have a Mk III. Two of them are shops: the sewing den for soft goods, the tinker shed for hardware. Hold a finger on anything for half a second and a card tells you what it is, what it drops, and how it is doing right now.</p>
+    </div>
+  </section>
+
+  <section id="wardrobe">
+    <div class="wrap">
+      <h2>The wardrobe</h2>
+      <p class="big">Twenty-two things to wear or carry, and a salon that repaints the cat, the goose, and everything with wheels.</p>
+      <div class="wear"><span>Boots</span><span>Parka</span><span>Mittens</span><span>Ice skates</span><span>Sun hat</span><span>Goosedown scarf</span><span>Pearl bell collar</span><span>Collar lamp</span><span>Surf raft</span><span>Water ball</span><span>Paw-fins</span><span>Zap coil</span><span>Rain flute</span><span>Sky balm</span><span>Storm pegs</span><span>Flares</span><span>Thermos</span><span>Rover</span><span>Scrap magnet</span><span>Rocket antenna</span></div>
+      <p class="quote">A board on your back. Cats do not swim. Cats surf.</p>
+      <p style="margin-top:22px;">Most of it shows on the cat. The parka is a real puffer with a cream collar. The skates turn a hop into a spin. The rover is a scrap-built buggy for a Pebble that has outgrown paws. And at the parlour, colours come as whole schemes, one pick for fur, suit, helmet and all: tabby for free, then tuxedo, snowcat, marmalade, ash, orchid, fern and ember, bought with dye and kept forever.</p>
+      <div class="pair">
+        <figure><img src="img/08-parlour.webp" width="1250" height="443" loading="lazy" alt="The grooming parlour panel: a preview of the cat and a grid of colour schemes."><figcaption>The grooming parlour.</figcaption></figure>
+        <figure><img src="img/catolog-panel.webp" width="1000" height="887" loading="lazy" alt="The Cat-o-log panel with tabs for the Pebble, resources, buildings, wardrobe and tools."><figcaption>The Cat-o-log: the manual inside the game. It never spoils. It remembers.</figcaption></figure>
+      </div>
+    </div>
+  </section>
 
   <section id="privacy">
     <div class="wrap">
@@ -409,7 +532,8 @@
   <section id="news">
     <div class="wrap">
       <h2>Until it lands</h2>
-      <p class="big">Two Barnisan games are out now. This one is on the bench.</p>
+      <p class="big">Two Barnisan games are out now. This one is on the bench, and chapter five is still being written.</p>
+      <p style="margin-top:14px;">The launch pad takes ten loads of fuel and then offers one button. Where the rocket goes is the part we are not telling you.</p>
       <div class="others">
         <div class="other">
           <h3>Governor: Free Republic</h3>
