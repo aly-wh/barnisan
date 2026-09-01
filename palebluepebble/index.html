@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pale Blue Pebble · A tiny-planet terraforming game · Barnisan</title>
+<meta name="description" content="Pale Blue Pebble is a tiny-planet terraforming game for iPhone and iPad, in development at Barnisan. Land a cat on a rock barely wider than its shadow, plant it, thaw it, and grow it into a world.">
+<link rel="canonical" href="https://barnisan.com/palebluepebble/">
+<meta property="og:title" content="Pale Blue Pebble">
+<meta property="og:description" content="A tiny-planet terraforming game for iPhone and iPad. Land on a rock barely wider than your shadow and grow it into a world. In development at Barnisan.">
+<meta property="og:url" content="https://barnisan.com/palebluepebble/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://barnisan.com/palebluepebble/img/og-palebluepebble.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070812">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070812'/%3E%3Ccircle cx='32' cy='34' r='17' fill='%23A9B4BF'/%3E%3Ccircle cx='26' cy='28' r='5' fill='%237CC4F5'/%3E%3Ccircle cx='38' cy='40' r='3' fill='%2386E3A0'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --void: #070812;
+    --void2: #0E1122;
+    --panel: #121630;
+    --line: #232847;
+    --ink: #EEF2F8;
+    --dim: #97A1B8;
+    --blue: #7CC4F5;
+    --blue-deep: #3E8FD0;
+    --amber: #FCD48A;
+    --amber-ink: #241B08;
+    --leaf: #86E3A0;
+    --mono: "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { overflow-x: hidden; }
+  body {
+    background: var(--void); color: var(--ink); font-family: var(--sans);
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+  .topstripe { height: 4px; background: linear-gradient(90deg, var(--blue-deep), var(--blue) 50%, var(--leaf)); }
+  a { color: var(--blue); }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+  .mono { font-family: var(--mono); }
+  .eyebrow {
+    font-family: var(--mono); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--dim);
+  }
+
+  /* ---- header ---- */
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: rgba(7, 8, 18, 0.84); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding-block: 14px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .brand .bmark { display: block; width: 30px; height: auto; padding: 5px 6px; background: #F7F3EC; border-radius: 999px; box-sizing: content-box; }
+  .wordmark { font-family: Georgia, "Times New Roman", serif; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+  nav.links { display: flex; gap: 22px; }
+  nav.links a { color: var(--dim); text-decoration: none; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  nav.links a:hover { color: var(--blue); }
+  .menu-toggle { display: none; background: none; cursor: pointer; line-height: 0; border: 1px solid var(--line); border-radius: 9px; padding: 7px 9px; color: var(--dim); }
+  .menu-toggle:hover { color: var(--blue); border-color: rgba(124, 196, 245, 0.5); }
+
+  /* ---- hero ---- */
+  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(60% 80% at 82% 50%, rgba(92, 60, 160, 0.42), transparent 70%),
+                radial-gradient(40% 50% at 20% 90%, rgba(62, 143, 208, 0.18), transparent 70%);
+  }
+  .hero-art {
+    position: absolute; right: -6%; top: 50%; transform: translateY(-50%); width: min(58vw, 620px); z-index: 0;
+    pointer-events: none;
+    opacity: 0.9;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 48%);
+    mask-image: linear-gradient(90deg, transparent, #000 48%);
+  }
+  .hero-art img { width: 100%; height: auto; display: block; }
+  .hero .wrap { position: relative; z-index: 1; padding-block: 84px 76px; max-width: 900px; }
+  .hero h1 { font-family: var(--mono); font-weight: 700; font-size: clamp(2.6rem, 8vw, 4.6rem); line-height: 1.02; letter-spacing: -0.02em; margin: 18px 0 22px; }
+  .hero h1 span { display: block; color: var(--blue); }
+  .hero p.lede { font-family: var(--mono); font-size: clamp(0.98rem, 1.9vw, 1.1rem); line-height: 1.7; color: #C9D2E3; max-width: 32em; }
+  .status {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 30px;
+    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amber); border: 1px solid rgba(252, 212, 138, 0.45); background: rgba(252, 212, 138, 0.07);
+    padding: 9px 16px; border-radius: 4px;
+  }
+  .status .dot { width: 7px; height: 7px; background: var(--amber); border-radius: 50%; box-shadow: 0 0 10px var(--amber); }
+  .hero .note { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.12em; color: var(--dim); margin-top: 22px; }
+
+  /* ---- sections ---- */
+  section { padding: 66px 0; border-top: 1px solid var(--line); }
+  section h2 { font-family: var(--mono); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--dim); margin-bottom: 14px; }
+  p.big { font-family: var(--mono); font-size: clamp(1.3rem, 3.4vw, 1.9rem); font-weight: 700; line-height: 1.3; letter-spacing: -0.015em; color: var(--ink); max-width: 22em; }
+  p.big em { font-style: normal; color: var(--leaf); }
+  section p { color: var(--dim); max-width: 40em; }
+  p + p { margin-top: 14px; }
+
+  /* ---- mission steps ---- */
+  .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 32px; }
+  .step { background: var(--void2); border: 1px solid var(--line); border-radius: 8px; padding: 22px 20px 20px; border-left: 3px solid var(--amber); }
+  .step .verb { display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.22em; color: var(--amber-ink); background: var(--amber); padding: 4px 10px; margin-bottom: 12px; }
+  .step h3 { font-family: var(--mono); font-size: 1.02rem; font-weight: 700; margin-bottom: 6px; }
+  .step p { font-size: 0.94rem; line-height: 1.55; max-width: none; }
+
+  /* ---- log card ---- */
+  .log {
+    margin-top: 34px; border: 1px solid var(--line); border-radius: 8px; padding: 26px 24px;
+    background: linear-gradient(180deg, rgba(18, 22, 48, 0.9), rgba(14, 17, 34, 0.9));
+    font-family: var(--mono);
+  }
+  .log .eyebrow { margin-bottom: 8px; }
+  .log .title { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 700; color: var(--leaf); letter-spacing: -0.01em; }
+  .log p.line { color: #C9D2E3; margin-top: 12px; font-size: 0.96rem; max-width: 36em; }
+  .gauges { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 20px; }
+  .gauge { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+  .gauge b { color: var(--ink); font-weight: 700; margin-left: 6px; }
+  .bar { display: flex; gap: 3px; margin-top: 7px; }
+  .bar i { width: 13px; height: 9px; border-radius: 2px; background: var(--line); }
+  .bar.water i.on { background: var(--blue); } .bar.flora i.on { background: var(--leaf); } .bar.air i.on { background: #B8A6F5; }
+
+  /* ---- shots ---- */
+  .shots { display: flex; gap: 16px; overflow-x: auto; margin-top: 30px; padding: 4px 24px 18px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .shot { flex: none; width: min(78vw, 560px); scroll-snap-align: center; }
+  .shot img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); background: var(--void2); box-shadow: 0 24px 50px -30px rgba(124, 196, 245, 0.45); }
+  .shot figcaption { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; color: var(--dim); margin-top: 11px; text-align: center; }
+  .shots-hint { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; color: var(--blue-deep); margin-top: 2px; }
+
+  /* ---- facts ---- */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+  .stat { background: var(--void2); border: 1px solid var(--line); border-radius: 8px; padding: 20px 18px; text-align: center; }
+  .stat .n { font-family: var(--mono); font-size: 1.9rem; font-weight: 700; line-height: 1.1; color: var(--blue); }
+  .stat .k { font-size: 0.84rem; color: var(--dim); margin-top: 6px; line-height: 1.4; }
+  ul.plain { list-style: none; margin-top: 26px; display: grid; gap: 11px; }
+  ul.plain li { position: relative; padding-left: 26px; color: var(--dim); font-size: 0.97rem; }
+  ul.plain li::before { content: ""; position: absolute; left: 0; top: 0.66em; width: 9px; height: 9px; border-radius: 2px; background: var(--amber); }
+
+  /* ---- privacy ---- */
+  .privacy-box { margin-top: 28px; border-radius: 8px; padding: 28px 26px; border: 1px solid var(--line); background: var(--void2); }
+  .nots { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+  .not { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); border: 1px solid rgba(124, 196, 245, 0.4); background: rgba(124, 196, 245, 0.07); padding: 7px 12px; border-radius: 4px; }
+  .privacy-box p { font-size: 0.97rem; max-width: none; }
+
+  /* ---- cta ---- */
+  .cta-box { margin-top: 28px; border-radius: 8px; padding: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; border: 1px solid rgba(252, 212, 138, 0.5); background: var(--void2); }
+  .cta-box .label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+  .cta-box .email { font-family: var(--mono); font-size: 1.08rem; font-weight: 700; margin-top: 4px; color: var(--ink); }
+  a.button { display: inline-block; background: var(--amber); color: var(--amber-ink); text-decoration: none; font-family: var(--mono); font-weight: 700; font-size: 0.86rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 15px 26px; border-radius: 4px; box-shadow: 0 0 0 1px rgba(252, 212, 138, 0.4), 0 14px 30px -16px rgba(252, 212, 138, 0.7); transition: transform .15s ease, filter .15s ease; }
+  a.button:hover { filter: brightness(1.05); transform: translateY(-1px); }
+  a.plain { color: var(--blue); text-decoration: none; font-weight: 700; }
+  a.plain:hover { color: var(--amber); text-decoration: underline; }
+  .others { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 22px; }
+  .other { border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; background: var(--void2); }
+  .other h3 { font-family: var(--mono); font-size: 0.98rem; margin-bottom: 4px; }
+  .other p { font-size: 0.9rem; margin-bottom: 10px; }
+
+  footer { border-top: 1px solid var(--line); padding: 30px 0 46px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+  footer p { color: var(--dim); font-size: 0.85rem; }
+
+  @media (max-width: 720px) {
+    .steps, .stats, .others { grid-template-columns: 1fr; }
+    .menu-toggle { display: block; }
+    nav.links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 4px 24px 12px; background: var(--void2); border-bottom: 1px solid var(--line); }
+    header[data-nav-open="true"] nav.links { display: flex; }
+    nav.links a { padding: 12px 0; font-size: 0.9rem; border-top: 1px solid var(--line); }
+    .hero .wrap { padding-block: 56px 48px; }
+    .hero-art { width: 92vw; right: -30%; opacity: 0.45; }
+    .shot { width: 84vw; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } a.button { transition: none; } }
+</style>
+</head>
+<body>
+<div class="topstripe"></div>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="Barnisan home">
+      <img class="bmark" src="/img/barnisan-mark.webp" width="30" height="24" alt="" decoding="async">
+      <div class="wordmark">Barnisan</div>
+    </a>
+    <nav class="links" id="sitenav" aria-label="Site navigation">
+      <a href="#mission">The mission</a>
+      <a href="#look">A look at it</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="sitenav" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+    </button>
+  </div>
+</header>
+<main id="top">
+  <div class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-art" aria-hidden="true">
+      <img src="img/hero-pebble.webp" width="1400" height="1400" alt="" decoding="async" fetchpriority="high">
+    </div>
+    <div class="wrap">
+      <p class="eyebrow">Mission log · day one</p>
+      <h1>Pale Blue <span>Pebble</span></h1>
+      <p class="lede">You set down on a rock barely wider than your shadow. In the hold: seeds and dirty ice. Walk it, plant it, thaw it, and see if it will hold an atmosphere before your air runs thin.</p>
+      <p><span class="status"><span class="dot"></span>In development · iPhone and iPad</span></p>
+      <p class="note">Left thumb walks · right thumb looks</p>
+    </div>
+  </div>
+
+  <section id="mission">
+    <div class="wrap">
+      <h2>The mission</h2>
+      <p class="big">One cat. One lander. A pebble that gets bigger <em>every time you tend it.</em></p>
+      <div class="steps">
+        <div class="step">
+          <span class="verb">PLANT</span>
+          <h3>Put a seedling in the ground</h3>
+          <p>The pack has seeds and the ground is waiting. Once a tree takes, it drops pods of its own, and the grove starts spreading without you.</p>
+        </div>
+        <div class="step">
+          <span class="verb">MELT</span>
+          <h3>Dig a hollow, thaw the ice</h3>
+          <p>Roots are thirsty things. Dig a bowl, melt dirty ice into it, and a puddle becomes a pool becomes a lake.</p>
+        </div>
+        <div class="step">
+          <span class="verb">ZAP</span>
+          <h3>Guard what you grew</h3>
+          <p>Something is always chewing at the roots. Borers freeze solid when zapped. Critters that raid the pods leave a pelt behind.</p>
+        </div>
+        <div class="step">
+          <span class="verb">BUILD</span>
+          <h3>Raise a camp from the lander</h3>
+          <p>A beacon against the dark. A tent by the grove. A condenser, a habitat, a radio tower. Then send a signal and see what answers.</p>
+        </div>
+      </div>
+      <div class="log">
+        <p class="eyebrow">Mission log · growth</p>
+        <p class="title">Small world</p>
+        <p class="line">The horizon is farther than it was. Your boots are the same size.</p>
+        <div class="gauges">
+          <div class="gauge">Water<b>Optimal</b><div class="bar water"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+          <div class="gauge">Flora<b>Optimal</b><div class="bar flora"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
+          <div class="gauge">Air<b>Thin</b><div class="bar air"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="grows">
+    <div class="wrap">
+      <h2>It grows</h2>
+      <p class="big">Every living tree makes the world bigger. Keep the gauges fed and the helmet comes off.</p>
+      <p style="margin-top:18px;">There is no finish line. The pebble swells as you plant, melt and build, and the further out the horizon goes, the more it asks of you. Seasons turn and bring their own weather. Ice caps form at the poles, and things start living on them: penguins, hares, seals, a fox. Let the gauges slip and the air thins, the helmet goes back on, and the grove starts to die back.</p>
+      <p>A rover for when the walk gets long. Dyes for the cat. A workbench, an observatory, a polar station. And a launch pad that takes ten loads of fuel, for whenever you are ready.</p>
+    </div>
+  </section>
+
+  <section id="look">
+    <div class="wrap">
+      <h2>A look at it</h2>
+      <p class="shots-hint">Scroll sideways for more. Work in progress, so it will keep changing.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot">
+        <img src="img/01-title.webp" width="1400" height="644" loading="lazy" alt="Title screen: the words Pale Blue Pebble in monospace type beside a small grey rocky planetoid drifting in front of a purple nebula, with a Step Outside button.">
+        <figcaption>Day one. Step outside.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/02-early.webp" width="1400" height="644" loading="lazy" alt="A cat in a green spacesuit stands beside a lander on a bare grey rock, with field notes listing the first tasks: roots down, dig a bowl, melt ice into the bowls.">
+        <figcaption>Barren rock. The lander and the first field notes.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/03-grown.webp" width="1400" height="644" loading="lazy" alt="The same pebble later, seen from a distance: green land, blue water and white cloud, with the cat standing on a grassy slope in the foreground.">
+        <figcaption>The same rock, some hours of tending later.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/04-aurora.webp" width="1400" height="644" loading="lazy" alt="The cat on a snowy polar cap under a green aurora, with field notes about a station on the cap and pearls from the seals.">
+        <figcaption>The cap, under an aurora.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/05-lake.webp" width="1400" height="644" loading="lazy" alt="A wide green world with a lake, the cat walking along the shoreline while the world state reads Thriving.">
+        <figcaption>Wide world. Room to grow.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/06-goose.webp" width="1400" height="644" loading="lazy" alt="The cat on green ground beside a lander, with a warning that something is chewing at the roots and a note to get back what the goose took.">
+        <figcaption>Something answered the signal.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="inside">
+    <div class="wrap">
+      <h2>What's inside</h2>
+      <div class="stats">
+        <div class="stat"><div class="n">1</div><div class="k">cat, in a spacesuit, with a pack of seeds</div></div>
+        <div class="stat"><div class="n">4</div><div class="k">seasons, each with its own weather</div></div>
+        <div class="stat"><div class="n">&infin;</div><div class="k">growth. The pebble has no top size</div></div>
+      </div>
+      <ul class="plain">
+        <li>Built on licensed art we picked by hand, rendered in our own engine.</li>
+        <li>Two thumbs. Left walks, right looks. Everything else is one of four big buttons.</li>
+        <li>Landscape, on iPhone and iPad. Saves where you left it.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="privacy">
+    <div class="wrap">
+      <h2>Privacy</h2>
+      <p class="big">Built the same way as our other games. Nothing goes anywhere.</p>
+      <div class="privacy-box">
+        <div class="nots">
+          <span class="not">No accounts</span>
+          <span class="not">No internet</span>
+          <span class="not">No ads</span>
+          <span class="not">No tracking</span>
+          <span class="not">No data collected</span>
+        </div>
+        <p>Pale Blue Pebble is a single-player game that lives entirely on your device. No analytics, no crash reporting, no advertising, no third-party code. Your saved pebble stays on your phone. Read the studio <a class="plain" href="/privacy/">privacy policy</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <div class="wrap">
+      <h2>Until it lands</h2>
+      <p class="big">Two Barnisan games are out now. This one is on the bench.</p>
+      <div class="others">
+        <div class="other">
+          <h3>Governor: Free Republic</h3>
+          <p>Real-time naval strategy. A charter, one frigate, and a sea full of pirates.</p>
+          <a class="plain" href="https://apps.apple.com/app/id6803666380">Get it on the App Store &rarr;</a>
+        </div>
+        <div class="other">
+          <h3>YapOff</h3>
+          <p>A pass-the-phone party word game. Twenty words, thirty seconds, one judge.</p>
+          <a class="plain" href="https://apps.apple.com/app/id6803661002">Get it on the App Store &rarr;</a>
+        </div>
+      </div>
+      <div class="cta-box">
+        <div>
+          <div class="label">Want to hear when Pale Blue Pebble is out?</div>
+          <div class="email">info@barnisan.com</div>
+        </div>
+        <a class="button" href="mailto:info@barnisan.com?subject=Pale%20Blue%20Pebble">Send an email</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <p>© 2026 Barnisan. All rights reserved.</p>
+    <p><a class="plain" href="/">Barnisan</a> &nbsp;·&nbsp; <a class="plain" href="/privacy/">Privacy</a> &nbsp;·&nbsp; <a class="plain" href="/#contact">Contact</a> &nbsp;·&nbsp; <a class="plain" rel="me" href="https://mastodon.social/@barnisan">Mastodon</a> &nbsp;·&nbsp; <a class="plain" rel="me" href="https://bsky.app/profile/barnisan.bsky.social">Bluesky</a></p>
+  </div>
+</footer>
+<script>
+(function () {
+  var header = document.querySelector('header');
+  var toggle = document.querySelector('.menu-toggle');
+  if (!header || !toggle) return;
+  function set(open) {
+    header.setAttribute('data-nav-open', open ? 'true' : 'false');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  toggle.addEventListener('click', function () { set(header.getAttribute('data-nav-open') !== 'true'); });
+  header.querySelectorAll('nav.links a').forEach(function (a) { a.addEventListener('click', function () { set(false); }); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && header.getAttribute('data-nav-open') === 'true') { set(false); toggle.focus(); }
+  });
+})();
+</script>
+</body>
+</html>
