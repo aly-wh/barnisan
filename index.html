@@ -17,6 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
   :root {
     --ink: #14100F;
@@ -27,7 +28,8 @@
     --bg: #FFFFFF;
     --line: #E6E1DD;
     --card: #FFFFFF;
-    --serif: Rockwell, "Bookman Old Style", Georgia, "Times New Roman", serif;
+    --serif: Arvo, Rockwell, "Bookman Old Style", Georgia, "Times New Roman", serif;
+    --body-font: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -35,7 +37,7 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--body-font);
     font-size: 17px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
@@ -54,7 +56,7 @@
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
   .brand img { display: block; width: 34px; height: auto; }
   .wordmark { font-size: 1.06rem; letter-spacing: 0.06em; text-transform: uppercase; }
-  .wordmark span { color: var(--muted); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  .wordmark span { color: var(--muted); font-family: var(--body-font);
     font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; margin-left: 7px; vertical-align: 2px; }
   nav.links { display: flex; gap: 24px; }
   nav.links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 600;
