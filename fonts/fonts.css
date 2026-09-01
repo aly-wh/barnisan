@@ -1,8 +1,6 @@
-/* Arvo by Anton Koovit, SIL Open Font License 1.1. Self-hosted so the site makes no third-party requests. */
-@font-face { font-family: "Arvo"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/arvo-400.woff2") format("woff2"); }
-@font-face { font-family: "Arvo"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/arvo-700.woff2") format("woff2"); }
-@font-face { font-family: "Arvo"; font-style: italic; font-weight: 400; font-display: swap; src: url("/fonts/arvo-400i.woff2") format("woff2"); }
-/* Lato by Łukasz Dziedzic, SIL Open Font License 1.1. Body text. */
-@font-face { font-family: "Lato"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/lato-400.woff2") format("woff2"); }
-@font-face { font-family: "Lato"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/lato-700.woff2") format("woff2"); }
-@font-face { font-family: "Lato"; font-style: italic; font-weight: 400; font-display: swap; src: url("/fonts/lato-400i.woff2") format("woff2"); }
+/* Bree Serif by TypeTogether and Barlow by Jeremy Tribby, both SIL Open Font License 1.1. Chosen by Aly 1 Sep 2026. */
+@font-face { font-family: "Bree Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/breeserif-400.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: italic; font-weight: 400; font-display: swap; src: url("/fonts/barlow-400i.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/barlow-400.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/barlow-500.woff2") format("woff2"); }
+@font-face { font-family: "Barlow"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/barlow-700.woff2") format("woff2"); }

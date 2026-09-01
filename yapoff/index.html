@@ -35,8 +35,8 @@
     --divider: #3A2554;
     --hot: linear-gradient(90deg, #EC4899, #F97316 55%, #FCD34D);
     --rim: linear-gradient(135deg, #2DD4BF, #5B3D8A 55%, #EC4899);
-    --head-font: Arvo, Rockwell, "Bookman Old Style", Georgia, "Times New Roman", serif;
-    --body-font: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --head-font: "Bree Serif", Rockwell, "Bookman Old Style", Georgia, serif;
+    --body-font: Barlow, "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -52,7 +52,7 @@
   .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
   .topstripe { height: 4px; background: var(--hot); }
   a.button-store { display: inline-block; font-family: var(--head-font); background: var(--hot); color: #180A2E; text-decoration: none;
-    font-weight: 800; font-size: 0.95rem; letter-spacing: 0.02em; padding: 15px 30px; border-radius: 999px;
+    font-weight: 400; font-size: 0.95rem; letter-spacing: 0.02em; padding: 15px 30px; border-radius: 999px;
     box-shadow: 0 12px 30px -14px rgba(236,72,153,0.7); }
   a.button-store:hover { filter: brightness(1.06); }
 
@@ -71,7 +71,7 @@
   .nav { display: flex; align-items: center; justify-content: space-between; padding-block: 14px; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--cream); }
   .brand svg { display: block; border-radius: 8px; }
-  .wordmark { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; font-family: var(--head-font); }
+  .wordmark { font-size: 1.1rem; font-weight: 400; letter-spacing: -0.01em; font-family: var(--head-font); }
   .wordmark span { color: var(--cream-dim); font-family: inherit; font-size: 0.7rem; font-weight: 600;
     letter-spacing: 0.08em; margin-left: 6px; vertical-align: 2px; font-family: var(--body-font); }
   nav.links { display: flex; gap: 20px; }
@@ -98,7 +98,7 @@
     filter: drop-shadow(0 18px 40px rgba(236, 72, 153, 0.35)); }
   .tagline {
     font-family: var(--head-font);
-    font-size: clamp(1.5rem, 4.6vw, 2.15rem); font-weight: 800; line-height: 1.2;
+    font-size: clamp(1.5rem, 4.6vw, 2.15rem); font-weight: 400; line-height: 1.2;
     letter-spacing: -0.015em; margin-bottom: 18px;
   }
   .tagline em { font-style: normal; background: var(--hot);
@@ -118,12 +118,12 @@
   section { padding: 62px 0; border-top: 1px solid var(--divider); }
   section h2 {
     font-family: var(--head-font);
-    font-size: 0.8rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+    font-size: 0.8rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--teal); margin-bottom: 14px;
   }
   section h2 + p.big, p.big {
     font-family: var(--head-font);
-    font-size: clamp(1.4rem, 3.2vw, 1.7rem); font-weight: 700; line-height: 1.35;
+    font-size: clamp(1.4rem, 3.2vw, 1.7rem); font-weight: 400; line-height: 1.35;
     letter-spacing: -0.01em; color: var(--cream); max-width: 20em;
   }
   section p { color: var(--cream-dim); max-width: 40em; }
@@ -141,7 +141,7 @@
     width: 30px; height: 30px; border-radius: 9px; margin-bottom: 12px;
     font-size: 0.9rem; font-weight: 800; color: var(--ink); background: var(--hot);
   }
-  .step h3 { font-family: var(--head-font); font-size: 1.02rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .step h3 { font-family: var(--head-font); font-size: 1.02rem; font-weight: 400; margin-bottom: 6px; letter-spacing: -0.01em; }
   .step p { font-size: 0.93rem; line-height: 1.55; max-width: none; }
 
   /* ---- prompt / chips demo ---- */
@@ -191,7 +191,7 @@
   }
   .stat .n {
     font-family: var(--head-font);
-    font-size: 1.75rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
+    font-size: 1.75rem; font-weight: 400; line-height: 1.1; letter-spacing: -0.02em;
     background: var(--hot); -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent; color: var(--magenta-hi);
   }
@@ -230,7 +230,7 @@
   .cta-box .email { font-size: 1.08rem; font-weight: 800; margin-top: 3px; color: var(--cream); }
   a.button {
     display: inline-block; font-family: var(--head-font); background: var(--hot); color: var(--ink); text-decoration: none;
-    font-weight: 800; font-size: 0.95rem; letter-spacing: 0.03em; padding: 13px 24px; border-radius: 12px;
+    font-weight: 400; font-size: 0.95rem; letter-spacing: 0.03em; padding: 13px 24px; border-radius: 12px;
     border: 2px solid var(--ink);
     box-shadow: 0 12px 26px -14px rgba(236, 72, 153, 0.75);
     transition: transform .15s ease, filter .15s ease;
