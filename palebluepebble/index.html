@@ -123,7 +123,8 @@
   .gauge b { color: var(--ink); font-weight: 700; margin-left: 6px; }
   .bar { display: flex; gap: 3px; margin-top: 7px; }
   .bar i { width: 13px; height: 9px; border-radius: 2px; background: var(--line); }
-  .bar.water i.on { background: var(--blue); } .bar.flora i.on { background: var(--leaf); } .bar.air i.on { background: #B8A6F5; }
+  .bar.water i.on { background: var(--blue); } .bar.flora i.on { background: var(--leaf); } .bar.air i.on { background: #B8A6F5; } .bar.cat i.on { background: var(--amber); }
+  .log p.fine { color: var(--dim); font-size: 0.82rem; margin-top: 18px; max-width: 44em; }
 
   /* ---- shots ---- */
   .shots { display: flex; gap: 16px; overflow-x: auto; margin-top: 30px; padding: 4px 24px 18px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
@@ -140,6 +141,16 @@
   ul.plain { list-style: none; margin-top: 26px; display: grid; gap: 11px; }
   ul.plain li { position: relative; padding-left: 26px; color: var(--dim); font-size: 0.97rem; }
   ul.plain li::before { content: ""; position: absolute; left: 0; top: 0.66em; width: 9px; height: 9px; border-radius: 2px; background: var(--amber); }
+
+  /* ---- field guide ---- */
+  .guide-lead { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 24px; align-items: center; margin-top: 30px; }
+  .guide-lead img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); }
+  .guide-lead p { font-size: 0.97rem; }
+  .guide h3 { font-family: var(--mono); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--blue); margin: 34px 0 12px; }
+  .pts { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+  .pt { margin: 0; background: var(--void2); border: 1px solid var(--line); border-radius: 8px; padding: 8px 6px 9px; text-align: center; }
+  .pt img { width: 100%; height: auto; display: block; aspect-ratio: 1; object-fit: contain; }
+  .pt figcaption { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--dim); margin-top: 6px; }
 
   /* ---- privacy ---- */
   .privacy-box { margin-top: 28px; border-radius: 8px; padding: 28px 26px; border: 1px solid var(--line); background: var(--void2); }
@@ -188,6 +199,7 @@
     <nav class="links" id="sitenav" aria-label="Site navigation">
       <a href="#mission">The mission</a>
       <a href="#look">A look at it</a>
+      <a href="#guide">Field guide</a>
       <a href="/privacy/">Privacy</a>
       <a href="/#contact">Contact</a>
     </nav>
@@ -245,7 +257,9 @@
           <div class="gauge">Water<b>Optimal</b><div class="bar water"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
           <div class="gauge">Flora<b>Optimal</b><div class="bar flora"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
           <div class="gauge">Air<b>Thin</b><div class="bar air"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="gauge">Cat<b>Bright</b><div class="bar cat"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
         </div>
+        <p class="fine">Water, flora and air belong to the Pebble. The fourth gauge is the cat's own. It drains as she walks about and a nap refills it. A drowsy cat drags her paws, and that is the whole penalty. Nothing out here kills you.</p>
       </div>
     </div>
   </section>
@@ -289,6 +303,14 @@
         <img src="img/06-goose.webp" width="1400" height="644" loading="lazy" alt="The cat on green ground beside a lander, with a warning that something is chewing at the roots and a note to get back what the goose took.">
         <figcaption>Something answered the signal.</figcaption>
       </figure>
+      <figure class="shot">
+        <img src="img/07-catolog.webp" width="1000" height="887" loading="lazy" alt="A dark panel headed Cat-o-log with tabs for The Pebble, Resources, Buildings, Wardrobe and Tools, and short entries on how the Pebble grows and the cat's own tank.">
+        <figcaption>The Cat-o-log. The manual lives inside the game.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/08-parlour.webp" width="1250" height="443" loading="lazy" alt="A panel headed Grooming Parlour with a preview of the cat on the left and a grid of coat colours to pick from.">
+        <figcaption>The grooming parlour. Dyes for the cat.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -305,6 +327,57 @@
         <li>Two thumbs. Left walks, right looks. Everything else is one of four big buttons.</li>
         <li>Landscape, on iPhone and iPad. Saves where you left it.</li>
       </ul>
+    </div>
+  </section>
+
+  <section id="guide" class="guide">
+    <div class="wrap">
+      <h2>Field guide</h2>
+      <p class="big">One cat, the things she plants, and the things that come for them.</p>
+      <div class="guide-lead">
+        <img src="img/cat-portrait.webp" width="1100" height="660" alt="The cat facing the camera in her green suit and glass helmet, standing on bare tan rock with the lander behind her." loading="lazy">
+        <p>The cat and the goose are rigged characters. The plants, animals and pickups are licensed models we picked by hand and re-seated to the Pebble's scale, then rendered in our own engine. Everything else out there, the lander, the buildings, the sea, the sky, is ours.</p>
+      </div>
+      <h3>What you plant</h3>
+      <div class="pts">
+          <figure class="pt"><img src="img/guide/oak.webp" width="280" height="280" loading="lazy" alt="Oak, a low-poly model on a dark ground."><figcaption>oak</figcaption></figure>
+          <figure class="pt"><img src="img/guide/maple.webp" width="280" height="280" loading="lazy" alt="Maple, a low-poly model on a dark ground."><figcaption>maple</figcaption></figure>
+          <figure class="pt"><img src="img/guide/pine.webp" width="280" height="280" loading="lazy" alt="Pine, a low-poly model on a dark ground."><figcaption>pine</figcaption></figure>
+          <figure class="pt"><img src="img/guide/palm.webp" width="280" height="280" loading="lazy" alt="Palm, a low-poly model on a dark ground."><figcaption>palm</figcaption></figure>
+          <figure class="pt"><img src="img/guide/blossom.webp" width="280" height="280" loading="lazy" alt="Blossom, a low-poly model on a dark ground."><figcaption>blossom</figcaption></figure>
+          <figure class="pt"><img src="img/guide/birch.webp" width="280" height="280" loading="lazy" alt="Birch, a low-poly model on a dark ground."><figcaption>birch</figcaption></figure>
+          <figure class="pt"><img src="img/guide/evergreen.webp" width="280" height="280" loading="lazy" alt="Evergreen, a low-poly model on a dark ground."><figcaption>evergreen</figcaption></figure>
+          <figure class="pt"><img src="img/guide/broadleaf.webp" width="280" height="280" loading="lazy" alt="Broadleaf, a low-poly model on a dark ground."><figcaption>broadleaf</figcaption></figure>
+          <figure class="pt"><img src="img/guide/frost-fern.webp" width="280" height="280" loading="lazy" alt="Frost fern, a low-poly model on a dark ground."><figcaption>frost fern</figcaption></figure>
+          <figure class="pt"><img src="img/guide/sunbloom.webp" width="280" height="280" loading="lazy" alt="Sunbloom, a low-poly model on a dark ground."><figcaption>sunbloom</figcaption></figure>
+          <figure class="pt"><img src="img/guide/bush.webp" width="280" height="280" loading="lazy" alt="Bush, a low-poly model on a dark ground."><figcaption>bush</figcaption></figure>
+          <figure class="pt"><img src="img/guide/flowers.webp" width="280" height="280" loading="lazy" alt="Flowers, a low-poly model on a dark ground."><figcaption>flowers</figcaption></figure>
+      </div>
+      <h3>What comes for it</h3>
+      <div class="pts">
+          <figure class="pt"><img src="img/guide/fox.webp" width="280" height="280" loading="lazy" alt="Fox, a low-poly model on a dark ground."><figcaption>fox</figcaption></figure>
+          <figure class="pt"><img src="img/guide/penguin.webp" width="280" height="280" loading="lazy" alt="Penguin, a low-poly model on a dark ground."><figcaption>penguin</figcaption></figure>
+          <figure class="pt"><img src="img/guide/seal.webp" width="280" height="280" loading="lazy" alt="Seal, a low-poly model on a dark ground."><figcaption>seal</figcaption></figure>
+          <figure class="pt"><img src="img/guide/hare.webp" width="280" height="280" loading="lazy" alt="Hare, a low-poly model on a dark ground."><figcaption>hare</figcaption></figure>
+          <figure class="pt"><img src="img/guide/borer.webp" width="280" height="280" loading="lazy" alt="Borer, a low-poly model on a dark ground."><figcaption>borer</figcaption></figure>
+          <figure class="pt"><img src="img/guide/pip.webp" width="280" height="280" loading="lazy" alt="Pip, a low-poly model on a dark ground."><figcaption>pip</figcaption></figure>
+          <figure class="pt"><img src="img/guide/petal-vole.webp" width="280" height="280" loading="lazy" alt="Petal vole, a low-poly model on a dark ground."><figcaption>petal vole</figcaption></figure>
+          <figure class="pt"><img src="img/guide/palm-crab.webp" width="280" height="280" loading="lazy" alt="Palm crab, a low-poly model on a dark ground."><figcaption>palm crab</figcaption></figure>
+          <figure class="pt"><img src="img/guide/hoarder.webp" width="280" height="280" loading="lazy" alt="Hoarder, a low-poly model on a dark ground."><figcaption>hoarder</figcaption></figure>
+          <figure class="pt"><img src="img/guide/rime-shrew.webp" width="280" height="280" loading="lazy" alt="Rime shrew, a low-poly model on a dark ground."><figcaption>rime shrew</figcaption></figure>
+      </div>
+      <h3>What you pick up</h3>
+      <div class="pts">
+          <figure class="pt"><img src="img/guide/fish.webp" width="280" height="280" loading="lazy" alt="Fish, a low-poly model on a dark ground."><figcaption>fish</figcaption></figure>
+          <figure class="pt"><img src="img/guide/pelt.webp" width="280" height="280" loading="lazy" alt="Pelt, a low-poly model on a dark ground."><figcaption>pelt</figcaption></figure>
+          <figure class="pt"><img src="img/guide/ice.webp" width="280" height="280" loading="lazy" alt="Ice, a low-poly model on a dark ground."><figcaption>ice</figcaption></figure>
+          <figure class="pt"><img src="img/guide/pearl.webp" width="280" height="280" loading="lazy" alt="Pearl, a low-poly model on a dark ground."><figcaption>pearl</figcaption></figure>
+          <figure class="pt"><img src="img/guide/rime.webp" width="280" height="280" loading="lazy" alt="Rime, a low-poly model on a dark ground."><figcaption>rime</figcaption></figure>
+          <figure class="pt"><img src="img/guide/dye.webp" width="280" height="280" loading="lazy" alt="Dye, a low-poly model on a dark ground."><figcaption>dye</figcaption></figure>
+          <figure class="pt"><img src="img/guide/spore.webp" width="280" height="280" loading="lazy" alt="Spore, a low-poly model on a dark ground."><figcaption>spore</figcaption></figure>
+          <figure class="pt"><img src="img/guide/down.webp" width="280" height="280" loading="lazy" alt="Down, a low-poly model on a dark ground."><figcaption>down</figcaption></figure>
+          <figure class="pt"><img src="img/guide/scrap.webp" width="280" height="280" loading="lazy" alt="Scrap, a low-poly model on a dark ground."><figcaption>scrap</figcaption></figure>
+      </div>
     </div>
   </section>
 
